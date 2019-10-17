@@ -9,14 +9,8 @@ public class ConectDB_postgres {
     private static final String user = "postgres";
     private static final String password = "12345";
 
-
-    /**
-     * TESTE
-     * @return CONEXAO DB
-     */
     public Connection getConexao(){
         Connection conn = null;
-
 
         try {
             Class.forName("org.postgresql.Driver");

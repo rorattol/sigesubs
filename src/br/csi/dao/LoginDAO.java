@@ -12,11 +12,11 @@ public class LoginDAO {
     ResultSet rs;
     boolean retorno = false;
 
-    public boolean autenticarCliente(String login, String senha) {
+    public boolean autenticarUsuario(String login, String senha) {
 
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
-            sql = "SELECT * FROM cliente WHERE senha_cliente = ? and email_cliente = ?;";
+            sql = "SELECT * FROM usuario WHERE senha = ? and login = ?;";
             pre = conn.prepareStatement(sql);
             pre.setString(1, senha);
             pre.setString(2, login);
