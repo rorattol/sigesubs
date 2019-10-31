@@ -43,6 +43,20 @@ public class UsuarioController{
         return "views/usuarioEdit";
     }
 
+    @RequestMapping("visualizarPerfil")
+    String visualizarPerfil(Model model){
+
+        return "views/perfilVisualizar";
+    }
+
+    @RequestMapping("editarPerfil")
+    String editPerfil(Model model){
+
+        return "views/perfilEditar";
+    }
+
+
+
     @PostMapping("updateUsuario")
     String atualizaUsuario(Usuario usuario, int idSetor, int tipoUsuario, Model model){
 
