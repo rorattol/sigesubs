@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioController{
 
     @RequestMapping("menuAdmin")
-    String menu(){
+    String menuA(){
         return "menuAdmin";
+    }
+
+    @RequestMapping("menuUsuario")
+    String menuU(){
+        return "menuUsuario";
     }
 
     @RequestMapping("gerenciarUsuario")

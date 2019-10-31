@@ -71,7 +71,7 @@
                                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>${logado.nomeUsuario}
-                                    <small>Administrador</small>
+                                    <small>Usuario UBS</small>
                                 </p>
                             </li>
 
@@ -105,10 +105,10 @@
                     <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
-                    <a href="solicitacaoMaterial"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
+                    <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoSolicitacaoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -123,8 +123,8 @@
                 Histórico de Solicitações
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="historicoAdmin">Historico de Solicitações</a></li>
+                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="historicoUsuario">Historico de Solicitações</a></li>
                 <li class="active">Detalhes Solicitacão</li>
             </ol>
         </section>
@@ -180,13 +180,15 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th style="width: 70px">Quantidade Pedida</th>
+                                        <th style="width: 70px">Quantidade Recebida</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>Trident</td>
                                         <td>Win 95+</td>
-                                        <td> 4</td>
+                                        <td>4</td>
+                                        <td>0</td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
@@ -194,6 +196,7 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th>Quantidade Pedida</th>
+                                        <th>Quantidade Recebida</th>
                                     </tr>
                                     </tfoot>
                                 </table>

@@ -71,7 +71,7 @@
                                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>${logado.nomeUsuario}
-                                    <small>Administrador</small>
+                                    <small>Usuario UBS</small>
                                 </p>
                             </li>
 
@@ -105,10 +105,10 @@
                     <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
-                    <a href="solicitacaoMaterial"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
+                    <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoSolicitacaoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -123,7 +123,7 @@
                 Histórico de Solicitações
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Histórico de Solicitações</li>
 
             </ol>
@@ -153,28 +153,28 @@
                                     <td>Win 95+</td>
                                     <td> 11-7-2014</td>
                                     <td><span class="label label-danger">Negado</span></td>
-                                    <td><button type="button" class="btn btn-info btn-flat">Ver detalhes</button></td>
+                                    <td><a href="detalheHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
                                     <td>Win 95+</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-success">Aceito</span></td>
-                                    <td><button type="button" class="btn btn-info btn-flat">Ver detalhes</button></td>
+                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
                                     <td>Win 95+</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><button type="button" class="btn btn-info btn-flat">Ver detalhes</button></td>
+                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
                                     <td>Win 98+</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><button type="button" class="btn btn-info btn-flat">Ver detalhes</button></td>
+                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
 
                                 </tbody>

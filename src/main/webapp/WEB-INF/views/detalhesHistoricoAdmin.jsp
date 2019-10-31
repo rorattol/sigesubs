@@ -189,6 +189,7 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th style="width: 70px">Quantidade Pedida</th>
+                                        <th style="width: 70px">Quantidade Enviada</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -196,6 +197,7 @@
                                         <td>Trident</td>
                                         <td>Win 95+</td>
                                         <td> 4</td>
+                                        <td>0</td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
@@ -203,6 +205,7 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th>Quantidade Pedida</th>
+                                        <th>Quantidade Enviada</th>
                                     </tr>
                                     </tfoot>
                                 </table>

@@ -78,10 +78,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="visualizarPerfil" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                    <a href="logout" class="btn btn-default btn-flat">Sair</a>
                                 </div>
                             </li>
                         </ul>
@@ -132,7 +132,7 @@
                 Transferir Materiais
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Transferir Materiais</li>
             </ol>
         </section>
@@ -155,13 +155,17 @@
                                 <tr>
                                     <th>Nome Material</th>
                                     <th>Unidade de Medida</th>
-                                    <th style="width: 230px">Ação</th>
+                                    <th style="width: 65px">Estoque Atual</th>
+                                    <th style="width: 190px">Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>Trident</td>
                                     <td>Win 95+</td>
+                                    <td>
+                                        <input type="text" class="form-control" value="17" disabled>
+                                    </td>
                                     <td>
                                         <div class="input-group">
 												  <span class="input-group-btn">
@@ -191,6 +195,7 @@
                                 <tr>
                                     <td>aaaaa</td>
                                     <td>teste</td>
+                                    <td><input type="text" class="form-control" value="7" disabled></td>
                                     <td>
                                         <div class="input-group">
 												  <span class="input-group-btn">
@@ -212,6 +217,7 @@
                                 <tr>
                                     <th>Nome Material</th>
                                     <th>Unidade de Medida</th>
+                                    <th>Estoque Atual</th>
                                     <th>Ações</th>
                                 </tr>
                                 </tfoot>
@@ -256,17 +262,6 @@
 
 <!-- page script -->
 <script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
-        })
-    })
 
     function incrementValue(e) {
         e.preventDefault();

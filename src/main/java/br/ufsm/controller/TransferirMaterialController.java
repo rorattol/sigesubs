@@ -15,8 +15,8 @@ public class TransferirMaterialController {
     }
 
     @RequestMapping("transfMat")
-    String tranferMateriais(Model model){
+    String transferMateriais(Model model){
 
-        return "views/trasferirUnidade";
+        return "views/transferirUnidade";
     }
 }
