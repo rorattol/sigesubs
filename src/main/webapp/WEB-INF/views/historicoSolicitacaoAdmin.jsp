@@ -160,7 +160,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Win 95+</td>
+                                    <td>Mariana</td>
                                     <td>Dom Antonio</td>
                                     <td> 11-7-2014</td>
                                     <td><span class="label label-danger">Negado</span></td>
@@ -168,7 +168,7 @@
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>Joana</td>
                                     <td>Lidia</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-success">Aceito</span></td>
@@ -176,7 +176,7 @@
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>Felipe</td>
                                     <td>Urlandia</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>
@@ -184,7 +184,7 @@
                                 </tr>
                                 <tr>
 
-                                    <td>Win 98+</td>
+                                    <td>André</td>
                                     <td>Camobi</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>

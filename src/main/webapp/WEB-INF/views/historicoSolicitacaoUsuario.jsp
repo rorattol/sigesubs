@@ -150,28 +150,28 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Win 95+</td>
-                                    <td> 11-7-2014</td>
+                                    <td>Maria</td>
+                                    <td>11-7-2014</td>
                                     <td><span class="label label-danger">Negado</span></td>
                                     <td><a href="detalheHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>João</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-success">Aceito</span></td>
                                     <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>Tereza</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>
                                     <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 98+</td>
+                                    <td>Ana</td>
                                     <td>11-7-2014</td>
                                     <td><span class="label label-warning">Aceito com Ajustes</span></td>
                                     <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>

@@ -157,28 +157,28 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Win 95+</td>
+                                    <td>Matheus</td>
                                     <td>Dom Antonio</td>
                                     <td> 11-7-2014</td>
                                     <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>Karen</td>
                                     <td>Lidia</td>
                                     <td>11-7-2014</td>
                                     <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 95+</td>
+                                    <td>Gabriela</td>
                                     <td>Urlandia</td>
                                     <td>11-7-2014</td>
                                     <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
 
-                                    <td>Win 98+</td>
+                                    <td>Gabriel</td>
                                     <td>Camobi</td>
                                     <td>11-7-2014</td>
                                     <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>

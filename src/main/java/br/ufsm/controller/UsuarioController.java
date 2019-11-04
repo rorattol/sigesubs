@@ -76,10 +76,10 @@ public class UsuarioController{
 //            retorno = new UsuarioDAO().updateComSenha(usuario);
 //        }
         if (retorno) {
-            model.addAttribute("sucesso", "Usuario Cadastrado com sucesso");
+            model.addAttribute("sucesso", "Usuario Atualizado com sucesso.");
             return "views/usuarioGerenciar";
         } else {
-            model.addAttribute("erro", "Não foi possivel cadastrar");
+            model.addAttribute("erro", "Não foi possivel atualizar.");
             return "views/usuarioGerenciar";
         }
     }
@@ -91,11 +91,11 @@ public class UsuarioController{
         boolean retorno = new UsuarioDAO().delete(usuario.getIdUsuario());
 
         if (retorno) {
-            model.addAttribute("sucesso", "Usuario excluido com sucesso");
+            model.addAttribute("sucesso", "Usuario excluido com sucesso.");
             return "views/usuarioGerenciar";
 
         } else {
-            model.addAttribute("erro", "Não foi possivel deletar");
+            model.addAttribute("erro", "Não foi possivel deletar.");
             return "views/usuarioGerenciar";
         }
 
@@ -113,11 +113,11 @@ public class UsuarioController{
         boolean retorno = new UsuarioDAO().create(usuario);
 
         if (retorno) {
-            model.addAttribute("sucesso", "Usuario Cadastrado com sucesso");
+            model.addAttribute("sucesso", "Usuario Cadastrado com sucesso.");
             return "views/usuarioGerenciar";
 
         } else {
-            model.addAttribute("erro", "Não foi possivel cadastrar");
+            model.addAttribute("erro", "Não foi possivel cadastrar.");
             return "views/usuarioGerenciar";
         }
     }

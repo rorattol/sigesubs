@@ -157,8 +157,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
+                                    <td>Porta Agulha Mathieu</td>
+                                    <td>Unitário</td>
                                     <td>10</td>
                                 </tr>
 

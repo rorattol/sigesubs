@@ -38,7 +38,7 @@ public class UsuarioDAO {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
             sql = "select u.id_usuario, u.nome_usuario, u.login_usuario, u.situacao_usuario, " +
-                        "tu.id_tipousuario, tu.tipousuario, s.nome_setor\n" +
+                        "tu.id_tipousuario, tu.tipousuario, s.nome_setor, u.cod_setor\n" +
                             "from usuario u, tipo_usuario tu, setor s\n" +
                                 "where u.id_tipousuario = tu.id_tipousuario and u.cod_setor = s.cod_setor and u.id_usuario = ?;\n ";
             pre = conn.prepareStatement(sql);
@@ -55,6 +55,7 @@ public class UsuarioDAO {
                 tu.setIdTipoUsuario(rs.getInt("id_tipousuario"));
                 u.setTipoUsuario(tu);
                 Setor s = new Setor();
+                s.setIdSetor(rs.getInt("cod_setor"));
                 s.setNomeSetor(rs.getString("nome_setor"));
                 u.setSetor(s);
                 return u;
