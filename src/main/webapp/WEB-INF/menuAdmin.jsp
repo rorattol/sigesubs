@@ -171,7 +171,7 @@
                                 <c:forEach var="unidade" items="${unidades}">
                                 <tr>
                                     <td>
-                                        <a href="#" type="button" class="btn btn-default">
+                                        <a href="estoqueUnidade" type="button" class="btn btn-default">
                                             <span class="glyphicon glyphicon-info-sign"></span>
                                         </a>
                                     </td>

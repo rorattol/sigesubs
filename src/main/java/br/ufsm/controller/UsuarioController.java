@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioController{
 
     @RequestMapping("menuAdmin")
-    String menuA(){
+    String menuA(Model model){
+        model.addAttribute("unidades", new SetorDAO().getSetor());
         return "menuAdmin";
     }
 

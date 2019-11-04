@@ -36,11 +36,11 @@ public class MaterialController {
         retorno = new MaterialDAO().update(material);
 
         if (retorno) {
-            model.addAttribute("sucesso", "Usuario Cadastrado com sucesso");
-            return "views/usuarioGerenciar";
+            model.addAttribute("sucesso", "Material atualizado com sucesso.");
+            return "views/materialGerenciar";
         } else {
-            model.addAttribute("erro", "Não foi possivel cadastrar");
-            return "views/usuarioGerenciar";
+            model.addAttribute("erro", "Não foi possível atualizar o material.");
+            return "views/materialGerenciar";
         }
     }
 
@@ -51,11 +51,11 @@ public class MaterialController {
         boolean retorno = new MaterialDAO().delete(material.getIdMaterial());
 
         if (retorno) {
-            model.addAttribute("sucesso", "Material excluido com sucesso");
+            model.addAttribute("sucesso", "Material excluído com sucesso.");
             return "views/materialGerenciar";
 
         } else {
-            model.addAttribute("erro", "Não foi possivel deletar");
+            model.addAttribute("erro", "Não foi possível deletar este material.");
             return "views/materialGerenciar";
         }
     }
@@ -66,12 +66,12 @@ public class MaterialController {
         boolean retorno = new MaterialDAO().create(material);
 
         if (retorno) {
-            model.addAttribute("sucesso", "Usuario Cadastrado com sucesso");
-            return "views/usuarioGerenciar";
+            model.addAttribute("sucesso", "Material Cadastrado com sucesso.");
+            return "views/materialGerenciar";
 
         } else {
-            model.addAttribute("erro", "Não foi possivel cadastrar");
-            return "views/usuarioGerenciar";
+            model.addAttribute("erro", "Não foi possivel cadastrar esse material.");
+            return "views/materialGerenciar";
         }
     }
 

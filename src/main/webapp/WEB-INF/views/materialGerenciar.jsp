@@ -179,8 +179,18 @@
                             <h3 class="box-title">Materiais</h3>
                             <!-- tools box -->
                             <div class="pull-right box-tools">
-                                <a href="adicionarMaterial" type="button" class="btn btn-success btn-flat">Adicionar Material</a>
+                                <a href="adicionarMaterial" type="button" class="btn btn-success">Adicionar Material</a>
                             </div>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm hidden-xs" style="width: 150px; padding: 3px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- /. tools -->
                         </div>
                         <!-- /.box-header -->

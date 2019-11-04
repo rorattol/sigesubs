@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EstoqueLocalController {
 
     @RequestMapping("/estoqueAlmox")
-    String index(){
+    String index() {
         return "views/adicionarEstoqueAlmox";
+    }
+
+    @RequestMapping("/estoqueUnidade")
+    String estoque() {
+        return "views/estoqueUnidade";
     }
 }

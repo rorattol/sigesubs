@@ -1,33 +1,32 @@
 <%--
   Created by IntelliJ IDEA.
   User: Lucas
-  Date: 23/10/2019
-  Time: 13:45
+  Date: 04/11/2019
+  Time: 14:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gerenciador UBS | Transferir Materiais</title>
+    <title>Gerenciador UBS | Estoque Unidade</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="../dist/css/AdminLTE.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="dist/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,13 +62,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<%--                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
+                            <%--                            <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-<%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
+                                <%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
 
                                 <p>${logado.nomeUsuario}
                                     <small>Administrador</small>
@@ -117,9 +116,6 @@
                 <li>
                     <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
                 </li>
-                <%--<li>
-                    <a href="estoqueAlmox"><i class="fa fa-th"></i> <span>Adicionar Materiais ao Almox</span></a>
-                </li>--%>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -130,12 +126,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Transferir Materiais
+                Home
             </h1>
             <ol class="breadcrumb">
                 <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Transferir Materiais</li>
-
+                <li class="active">Estoque Unidade</li>
             </ol>
         </section>
 
@@ -145,34 +140,42 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Unidades</h3>
+                            <h3 class="box-title">Estoque da Unidade [Dom Antonio Reis]</h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <jsp:useBean id="setorDAO" class="br.ufsm.dao.SetorDAO"></jsp:useBean>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Nome da Unidade</th>
-                                    <th>Complexidade</th>
-                                    <th style="width: 40px">Ação</th>
+                                    <th>Nome do Material</th>
+                                    <th>Unidade Medida</th>
+                                    <th style="width: 60px">Quantidade em Estoque</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="unidade" items="${unidades}">
                                 <tr>
-                                    <td>${unidade.nomeSetor}</td>
-                                    <td>${unidade.atencaoSaude}</td>
-                                    <td><a href="transfMat" type="button" class="btn btn-success btn-flat">Adicionar Materiais</a></td>
+                                    <td>Win 95+</td>
+                                    <td> 4</td>
+                                    <td>10</td>
                                 </tr>
-<%--        ?id={unidade.idSetor}                        --%>
-                                </c:forEach>
+
+
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Nome da Unidade</th>
-                                    <th>Complexidade</th>
-                                    <th>Ação</th>
+                                    <th>Nome do Material</th>
+                                    <th>Unidade Medida</th>
+                                    <th>Quantidade em Estoque</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -185,30 +188,33 @@
 
             </div>
         </section>
-
     </div>
     <!-- ./wrapper -->
+
+
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.18
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+        reserved.
     </footer>
-
 </div>
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <!-- DataTables -->
-<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+<script src="../bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 <!-- SlimScroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="../bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
 <!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="../dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     $(function () {
@@ -225,3 +231,4 @@
 </script>
 </body>
 </html>
+
