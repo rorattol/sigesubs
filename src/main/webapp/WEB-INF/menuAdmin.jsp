@@ -63,13 +63,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+<%--                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+<%--                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
 
                                 <p>
                                     ${logado.nomeUsuario}
@@ -145,6 +145,16 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Estoque</h3>
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <jsp:useBean id="setorDAO" class="br.ufsm.dao.SetorDAO"></jsp:useBean>
                         <!-- /.box-header -->
