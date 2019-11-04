@@ -162,10 +162,10 @@
                                     <label for="exampleInputunidade">Categoria do Material</label>
                                     <input type="number" class="form-control" id="exampleInputunidade" name="categoria" value="1" placeholder="Odontológico" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputQtdInicial">Quantidade Inicial</label>
-                                    <input type="number" class="form-control" name="qtdInicial" id="exampleInputQtdInicial" value="0" min="0">
-                                </div>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="exampleInputQtdInicial">Quantidade Inicial</label>--%>
+<%--                                    <input type="number" class="form-control" name="qtdInicial" id="exampleInputQtdInicial" value="0" min="0">--%>
+<%--                                </div>--%>
                             </div>
                             <!-- /.box-body -->
 

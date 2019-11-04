@@ -60,7 +60,7 @@ public class MaterialController {
         }
     }
 
-    @PostMapping("addMaterial")
+    @PostMapping("materialadd")
     String cadastrarMaterial(Material material, Model model){
 
         boolean retorno = new MaterialDAO().create(material);
