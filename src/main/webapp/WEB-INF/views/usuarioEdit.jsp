@@ -188,7 +188,7 @@
                                         <div class="col-lg-6">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipoUsuario" id="optionsRadios1" value="2"
+                                                    <input type="radio" name="tipoU" id="optionsRadios1" value="2"
                                                            <c:if test="${usuario.tipoUsuario.idTipoUsuario == 2}">checked </c:if>>
                                                     Administrador Geral
                                                 </label>
@@ -197,7 +197,7 @@
                                         <div class="col-lg-6">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipoUsuario" id="optionsRadios2" value="1"
+                                                    <input type="radio" name="tipoU" id="optionsRadios2" value="1"
                                                            <c:if test="${usuario.tipoUsuario.idTipoUsuario == 1}">checked </c:if>>
                                                     Administrador UBS
                                                 </label>

@@ -58,11 +58,11 @@ public class UsuarioController{
 
 
     @PostMapping("updateUsuario")
-    String atualizaUsuario(Usuario usuario, int idSetor, int tipoUsuario, Model model){
+    String atualizaUsuario(Usuario usuario, int idSetor, int tipoU, Model model){
 
         TipoUsuario tipoUser = new TipoUsuario();
         Setor s = new Setor();
-        tipoUser.setIdTipoUsuario(tipoUsuario);
+        tipoUser.setIdTipoUsuario(tipoU);
         s.setIdSetor(idSetor);
         usuario.setSetor(s);
         usuario.setTipoUsuario(tipoUser);

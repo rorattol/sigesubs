@@ -92,7 +92,7 @@ public class UsuarioDAO {
     public boolean updateSemSenha(Usuario usuario) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
-            sql = "UPDATE usuario SET nome_usuario = ?, login_usuario = ?, situacao_usuario = ?, id_tipousuario, cod_setor = ? " +
+            sql = "UPDATE usuario SET nome_usuario = ?, login_usuario = ?, situacao_usuario = ?, id_tipousuario = ?, cod_setor = ? " +
                     "WHERE id_usuario = ?;";
             pre = conn.prepareStatement(sql);
             pre.setString(1, usuario.getNomeUsuario());
@@ -100,6 +100,7 @@ public class UsuarioDAO {
             pre.setBoolean(3, true);
             pre.setInt(4, usuario.getTipoUsuario().getIdTipoUsuario());
             pre.setInt(5, usuario.getSetor().getIdSetor());
+            pre.setInt(6, usuario.getIdUsuario());
             if (pre.executeUpdate() > 0) {
                 retorno = true;
             }

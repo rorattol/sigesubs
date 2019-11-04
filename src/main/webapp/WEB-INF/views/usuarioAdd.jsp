@@ -185,7 +185,7 @@
                                         <div class="col-lg-6">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipoUsuario" id="optionsRadios1" value="2">
+                                                    <input type="radio" name="tipoUsuario" id="optionsRadios2" value="2">
                                                     Administrador Geral
                                                 </label>
                                             </div>
@@ -193,7 +193,7 @@
                                         <div class="col-lg-6">
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipoUsuario" id="optionsRadios2" value="1" checked>
+                                                    <input type="radio" name="tipoUsuario" id="optionsRadios1" value="1" checked>
                                                     Administrador UBS
                                                 </label>
                                             </div>
