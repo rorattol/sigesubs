@@ -102,10 +102,10 @@ public class UsuarioController{
 }
 
     @PostMapping("addUsuario")
-    String cadastrarUsuario(Usuario usuario, int idSetor, int tipoUsuario, Model model){
+    String cadastrarUsuario(Usuario usuario, int idSetor, int tipoU, Model model){
 
         TipoUsuario tipoUser = new TipoUsuario();
-        tipoUser.setIdTipoUsuario(tipoUsuario);
+        tipoUser.setIdTipoUsuario(tipoU);
         Setor s = new Setor();
         s.setIdSetor(idSetor);
         usuario.setSetor(s);

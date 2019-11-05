@@ -130,7 +130,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Gerenciar Materiais</h1>
+            <h1>Gerenciar Usuário</h1>
             <ol class="breadcrumb">
                 <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a href="gerenciarUsuario">Gerenciar Usuários</a></li>
