@@ -1,11 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: Lucas
-  Date: 31/10/2019
-  Time: 17:05
+  Date: 18/10/2019
+  Time: 17:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,26 +64,27 @@
 
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<%--                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
-                            <span class="hidden-xs">${logado.nomeUsuario}</span>
+                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-<%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
+                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                                <p>${logado.nomeUsuario}
-                                    <small>Administrador</small>
+                                <p>
+                                    Alexander Pierce - Web Developer
+                                    <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
 
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="logout" class="btn btn-default btn-flat">Sair</a>
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -137,59 +140,86 @@
         <section class="content">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-3">
 
                     <!-- Profile Image -->
                     <div class="box box-primary">
                         <div class="box-body box-profile">
-<%--                            <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">--%>
+                            <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
 
                             <h3 class="profile-username text-center">Nome Usuario</h3>
 
                             <p class="text-muted text-center">Administrador Geral</p>
 
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label for="inputName1" class="col-sm-2 control-label">Nome</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputName1" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName2" class="col-sm-2 control-label">Digite sua Senha Atual</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName2" placeholder="Senha">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName3" class="col-sm-2 control-label">Digite sua nova senha</label>
-
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName3" placeholder="Nova senha">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-info">Atualizar Perfil</button>
-                                    </div>
-                                </div>
-                            </form>
 
                         </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
 
+
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="nav-tabs-custom">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                    </div>
+                    <!-- /.nav-tabs-custom -->
                 </div>
                 <!-- /.col -->
             </div>
@@ -219,3 +249,4 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
