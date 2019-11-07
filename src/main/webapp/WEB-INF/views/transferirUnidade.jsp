@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,7 @@
                         <div class="box-body">
 
                             <table id="example2" class="table table-bordered table-hover">
-
+                                <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
                                 <thead>
                                 <tr>
                                     <th>Nome Material</th>
@@ -160,11 +161,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach var="materiais" items="${almox}">
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Win 95+</td>
+                                    <td>${materiais.nomeMaterial}</td>
+                                    <td>${materiais.unidadeMedida}</td>
                                     <td>
-                                        <input type="text" class="form-control" value="17" disabled>
+                                        <input type="text" class="form-control" value="${materiais.quantidade}" disabled>
                                     </td>
                                     <td>
                                         <div class="input-group">
@@ -173,37 +175,7 @@
 														  <span class="glyphicon glyphicon-minus"></span>
 													  </button>
 												  </span>
-                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                            <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
-                                        </div>
-
-                                        <!--
-                                                    <div class="input-group">
-													  <input type="button" value="-" class="button-minus" data-field="quantity">
-													  <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-													  <input type="button" value="+" class="button-plus" data-field="quantity">
-													</div>-->
-                                        <!--		https://bootsnipp.com/snippets/dGWP
-                                                    http://jsfiddle.net/polaszk/1oyfxoor/ -->
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>aaaaa</td>
-                                    <td>teste</td>
-                                    <td><input type="text" class="form-control" value="7" disabled></td>
-                                    <td>
-                                        <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
+                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
                                             <span class="input-group-btn">
 													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
 														  <span class="glyphicon glyphicon-plus"></span>
@@ -211,6 +183,16 @@
 												  </span>
                                         </div>
                                     </td>
+                                    </c:forEach>
+                                    <!--
+                                    <div class="input-group">
+                                    <input type="button" value="-" class="button-minus" data-field="quantity">
+                                    <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
+                                    <input type="button" value="+" class="button-plus" data-field="quantity">
+                                    </div>-->
+                                    <!--		https://bootsnipp.com/snippets/dGWP
+                                    http://jsfiddle.net/polaszk/1oyfxoor/ -->
+
                                 </tr>
                                 </tbody>
                                 <tfoot>

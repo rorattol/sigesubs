@@ -163,9 +163,8 @@
                                 <tr>
                                     <td>${unidade.nomeSetor}</td>
                                     <td>${unidade.atencaoSaude}</td>
-                                    <td><a href="transfMat" type="button" class="btn btn-success btn-flat">Adicionar Materiais</a></td>
+                                    <td><a href="transfMat?id=${unidade.idSetor}" type="button" class="btn btn-success btn-flat">Adicionar Materiais</a></td>
                                 </tr>
-<%--        ?id={unidade.idSetor}                        --%>
                                 </c:forEach>
                                 </tbody>
                                 <tfoot>

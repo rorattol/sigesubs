@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,14 +134,14 @@
                 <li class="active">Estoque Unidade</li>
             </ol>
         </section>
-
+        <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Estoque da Unidade [Dom Antonio Reis]</h3>
+                            <h3 class="box-title">Estoque da Unidade</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -163,12 +164,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach var="estoque" items="${materiais}">
                                 <tr>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>10</td>
+                                    <td>${estoque.material.nomeMaterial}</td>
+                                    <td>${estoque.material.unidadeMedida}</td>
+                                    <td>${estoque.qtdEstoque}</td>
                                 </tr>
-
+                                </c:forEach>
 
                                 </tbody>
                                 <tfoot>

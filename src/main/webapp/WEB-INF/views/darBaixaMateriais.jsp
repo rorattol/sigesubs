@@ -159,15 +159,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>resina composta cor B2</td>
-                                    <td>Unitário</td>
-                                    <td>
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" value="11" min="0" max="200">
-                                        </div>
-                                    </td>
-                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>

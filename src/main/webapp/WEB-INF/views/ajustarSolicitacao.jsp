@@ -193,26 +193,6 @@
 
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>aaaaa</td>
-                                        <td>teste</td>
-                                        <td><input type="text" class="form-control" value="7" disabled></td>
-                                        <td>
-                                            <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                                <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                                <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                     <tfoot>
                                     <tr>
