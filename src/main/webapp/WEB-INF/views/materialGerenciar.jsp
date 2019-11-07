@@ -244,12 +244,12 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Deletar Usuário</h4>
+                                    <h4 class="modal-title">Deletar Material</h4>
                                 </div>
-                                <form method="post" action="deleteUsuario">
+                                <form method="post" action="deleteMaterial">
                                     <div class="modal-body">
-                                        <input type="hidden" name="idUsuario">
-                                        <p>Você deseja deletar este usuário?</p>
+                                        <input type="hidden" name="idMaterial">
+                                        <p>Você deseja deletar este material?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>

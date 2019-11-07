@@ -38,8 +38,9 @@ public class MaterialDAO {
             rs = pre.executeQuery();
             while (rs.next()) {
                 Material m = new Material();
-                m.setIdMaterial(rs.getInt("nome_material"));
-                m.setNomeMaterial(rs.getString("unidade_medida"));
+                m.setIdMaterial(rs.getInt("id_material"));
+                m.setNomeMaterial(rs.getString("nome_material"));
+                m.setUnidadeMedida(rs.getString("unidade_medida"));
                 m.setCategoria(rs.getInt("id_categoria"));
                 return m;
             }

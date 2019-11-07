@@ -168,6 +168,11 @@
                                 </tr>
                                 </tfoot>
                             </table>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
+                                <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
+
+                            </div>
                         </div>
                         <!-- /.box-body -->
                     </div>

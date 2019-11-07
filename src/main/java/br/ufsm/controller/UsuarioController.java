@@ -21,8 +21,10 @@ public class UsuarioController{
         return "menuAdmin";
     }
 
-    @RequestMapping("menuUsuario")
+    @PostMapping("menuUsuario")
     String menuU(){
+        //@RequestParam ("id") int id, Model model
+       // model.addAttribute("estoque", new SetorDAO().getSetor());
         return "menuUsuario";
     }
 

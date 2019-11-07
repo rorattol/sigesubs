@@ -1,5 +1,6 @@
 package br.ufsm.controller;
 
+import br.ufsm.dao.EstoqueSetorDAO;
 import br.ufsm.dao.LoginDAO;
 import br.ufsm.dao.SetorDAO;
 import br.ufsm.dao.UsuarioDAO;
@@ -26,18 +27,22 @@ String index(){
 
         if(autenticado){
             usuario = new UsuarioDAO().read(usuario.getLoginUsuario(), usuario.getSenhaUsuario());
-            var unidades = new SetorDAO().getSetor();
-
             sessao.setAttribute("logado", usuario);
             model.addAttribute("logado", usuario);
-            model.addAttribute("unidades", unidades);
+
+            System.out.println(usuario.getSetor().getNomeSetor());
+            System.out.println(usuario.getSetor().getIdSetor());
 
             if(usuario.getTipoUsuario().getIdTipoUsuario() == 1){  //usuario comum
-                System.out.println(usuario.getTipoUsuario().getIdTipoUsuario());
+
+                model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetor(usuario.getSetor().getIdSetor()));
                 System.out.println("menuUsuario");
                 return "menuUsuario";
             }
             else{ //usuario admin
+                var unidades = new SetorDAO().getSetor();
+                model.addAttribute("unidades", unidades);
+
                 System.out.println("menuAdmin");
                 return "menuAdmin";
             }

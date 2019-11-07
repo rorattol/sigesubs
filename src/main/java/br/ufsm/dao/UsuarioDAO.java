@@ -69,7 +69,11 @@ public class UsuarioDAO {
     public Usuario read(String email, String senha) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
-            sql = "SELECT * FROM usuario WHERE login_usuario = ? and senha_usuario = ?;";
+            sql = "SELECT u.*, s.nome_setor, tu.tipousuario " +
+                    "FROM usuario u, tipo_usuario tu, setor s\n" +
+                    "WHERE u.cod_setor = s.cod_setor " +
+                    "AND u.id_tipousuario = tu.id_tipousuario " +
+                    "AND login_usuario = ? AND senha_usuario = ?;";
             pre = conn.prepareStatement(sql);
             pre.setString(1, email);
             pre.setString(2, senha);
@@ -81,7 +85,12 @@ public class UsuarioDAO {
                 u.setSenhaUsuario(rs.getString("senha_usuario"));
                 TipoUsuario tu = new TipoUsuario();
                 tu.setIdTipoUsuario(rs.getInt("id_tipousuario"));
+                tu.setNomeTipoUsuario(rs.getString("tipousuario"));
                 u.setTipoUsuario(tu);
+                Setor s = new Setor();
+                s.setIdSetor(rs.getInt("cod_setor"));
+                s.setNomeSetor(rs.getString("nome_setor"));
+                u.setSetor(s);
                 return u;
             }
         } catch (SQLException ex) {

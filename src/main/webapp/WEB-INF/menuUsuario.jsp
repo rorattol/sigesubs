@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,11 +134,12 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Estoque</h3>
+                            <h3 class="box-title">Estoque da unidade ${logado.setor.nomeSetor}</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
+                                    <%--CAMPO DE BUSCA--%>
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                     </div>
@@ -156,13 +158,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Porta Agulha Mathieu</td>
-                                    <td>Unitário</td>
-                                    <td>10</td>
-                                </tr>
-
-
+                                <c:forEach var="estoque" items="${estoque}">
+                                    <tr>
+                                        <td>${estoque.material.nomeMaterial}</td>
+                                        <td>${estoque.material.unidadeMedida}</td>
+                                        <td>${estoque.qtdEstoque}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>

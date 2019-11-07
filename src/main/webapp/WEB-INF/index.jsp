@@ -37,14 +37,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+
+    <div class="login-logo">
+        </br>
+        Gerenciador de Materiais Odontológicos</br>
+        para <b>Unidades Básicas de Saúde</b>
+    </div>
     <c:if test="${not empty mensagem}">
         <h3><strong style="color:#ff0000">${mensagem}</strong></h3>
     </c:if>
-    <div class="login-logo">
-        Gerenciador<b>UBS</b>
-    </div>
-    <!-- /.login-logo -->
+
+<div class="login-box">
     <div class="login-box-body">
         <p class="login-box-msg">Faça Login para entrar</p>
         <form action="login" method="post">

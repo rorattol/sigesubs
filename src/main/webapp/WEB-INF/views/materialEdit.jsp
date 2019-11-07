@@ -141,19 +141,21 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="materialedit" method="post" role="form">
+                        <jsp:useBean id="setorDAO" class="br.ufsm.dao.SetorDAO"></jsp:useBean>
+                        <form action="updateMaterial" method="post">
                             <div class="box-body">
+                                <input type="hidden" name="idMaterial" value="${material.idMaterial}">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nome do Material</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="nomeMaterial" placeholder="Nome material">
+                                    <label for="exampleInputNome">Nome do Material</label>
+                                    <input type="text" class="form-control" id="exampleInputNome" value="${material.nomeMaterial}" name="nomeMaterial" placeholder="Nome material">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputMedida">Unidade de Medida</label>
-                                    <input type="text" class="form-control" id="exampleInputMedida" name="unidadeMedida" placeholder="Unidade de medida">
+                                    <input type="text" class="form-control" id="exampleInputMedida" value="${material.unidadeMedida}" name="unidadeMedida" placeholder="Unidade de medida">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputunidade">Categoria do Material</label>
-                                    <input type="number" class="form-control" id="exampleInputunidade" name="categoria" value="1" placeholder="Odontológico" readonly>
+                                    <label for="exampleInputCategoria">Categoria do Material</label>
+                                    <input type="number" class="form-control" id="exampleInputCategoria" name="categoria" value="1" placeholder="Odontológico" readonly>
                                 </div>
                             </div>
                             <!-- /.box-body -->

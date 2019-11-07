@@ -161,26 +161,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="materiais" items="${almox}">
+                                <c:forEach var="estoque" items="${materiais}">
                                 <tr>
-                                    <td>${materiais.nomeMaterial}</td>
-                                    <td>${materiais.unidadeMedida}</td>
+                                    <td>${estoque.material.nomeMaterial}</td>
+                                    <td>${estoque.material.unidadeMedida}</td>
                                     <td>
-                                        <input type="text" class="form-control" value="${materiais.quantidade}" disabled>
+                                        <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
                                     </td>
                                     <td>
-                                        <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                            <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
+<%--                                        <div class="input-group">--%>
+<%--												  <span class="input-group-btn">--%>
+<%--													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">--%>
+<%--														  <span class="glyphicon glyphicon-minus"></span>--%>
+<%--													  </button>--%>
+<%--												  </span>--%>
+                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="1" min="1" max="10">
+<%--                                            <span class="input-group-btn">--%>
+<%--													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">--%>
+<%--														  <span class="glyphicon glyphicon-plus"></span>--%>
+<%--													  </button>--%>
+<%--												  </span>--%>
                                         </div>
                                     </td>
                                     </c:forEach>

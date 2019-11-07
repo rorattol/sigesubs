@@ -36,11 +36,10 @@ public class EstoqueSetorDAO {
 
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
-
-            sql = "SELECT se.quantidade, mat.id_material, mat.nome_material, mat.unidade_medida, s.nome_setor, s.cod_setor " +
-                    "FROM setor_material se, material mat, setor s " +
-                    "WHERE mat.id_material = se.id_material" +
-                    "  AND s.cod_setor = se.cod_setor AND se.cod_setor = ?";
+            sql = "SELECT se.quantidade, mat.id_material, mat.nome_material, mat.unidade_medida, s.nome_setor, s.cod_setor\n" +
+                    "FROM setor_material se, material mat, setor s\n" +
+                    "WHERE mat.id_material = se.id_material\n" +
+                    "  AND s.cod_setor = se.cod_setor AND se.cod_setor = ?;";
             pre = conn.prepareStatement(sql);
             pre.setInt(1, id);
             rs = pre.executeQuery();

@@ -204,7 +204,7 @@
                             </table>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
-                                <a href="menuUsuario" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
+                                <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                             </div>
                         </div>
