@@ -41,7 +41,7 @@ CREATE TABLE usuario(
 
 CREATE TABLE solicitacao(
 	id_solicitacao serial not null,
-	data_solicitacao date,
+	data_solicitacao DATE DEFAULT CURRENT_DATE,
 	status_solicitacao varchar (25),
 	observacao text,
 	usuario_responsavel int,
@@ -54,7 +54,7 @@ CREATE TABLE solicitacao(
 
 CREATE TABLE movimentacao(
 	id_movimentacao serial not null,
-	data_mov date,
+	data_mov DATE DEFAULT CURRENT_DATE,
 	id_solicitacao int,
 	almox_destino int,
 	primary key (id_movimentacao),

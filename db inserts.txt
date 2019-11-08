@@ -53,8 +53,10 @@ insert into solicitacao(data_solicitacao, status_solicitacao, observacao,
 	usuario_responsavel, setor_solicitante)
 		values(date,"pendente", "sem observacao", 1, 1);
 
-insert into movimentacao(data_movimentacao, id_solicitacao, almox_destino)
-	values(date, 2 , 1);
+insert into movimentacao(id_solicitacao, almox_destino)
+	values(2 , 1);
+
+
 
 insert into setor_material(cod_setor, id_material, quantidade)
 	values(1, 1, 23);
@@ -64,5 +66,17 @@ insert into setor_material(cod_setor, id_material, quantidade)
 insert into material_movimentacao(id_movimentacao, id_material, quantidade)
 	values(1, 1, 13);
 
+
+
 insert into material_solicitacao(id_solicitacao, id_material, quantidade)
 	values(1, 1, 8);
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(1, 4, 12);
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(1, 3, 3);
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(2, 2, 18);
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(2, 5, 10);
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(2, 7, 13);
