@@ -1,0 +1,89 @@
+CREATE TABLE categoria(
+	id_categoria serial not null,
+	nome_categoria varchar (40),
+	area_categoria varchar(40),
+	primary key (id_categoria)
+);
+
+CREATE TABLE setor(
+	cod_setor serial not null,
+	nome_setor varchar (70),
+	atencao_saude varchar (60),
+	primary key (cod_setor)
+);
+
+CREATE TABLE tipo_usuario(
+	id_tipousuario serial not null,
+	tipousuario varchar (30),
+	primary key (id_tipousuario)
+);
+
+CREATE TABLE material(
+	id_material serial not null,
+	nome_material varchar (50),
+	unidade_medida varchar (50),
+	id_categoria int,
+	primary key (id_material),
+	foreign key (id_categoria) references categoria(id_categoria)
+);
+
+CREATE TABLE usuario(
+	id_usuario serial not null,
+	login_usuario varchar(50),
+	senha_usuario varchar,
+	situacao_usuario boolean,
+	primary key (id_usuario),
+	id_tipousuario int,
+	cod_setor int,
+	foreign key (cod_setor) references setor (cod_setor),
+	foreign key (id_tipousuario) references tipo_usuario (id_tipousuario)
+);
+
+CREATE TABLE solicitacao(
+	id_solicitacao serial not null,
+	data_solicitacao date,
+	status_solicitacao varchar (25),
+	observacao text,
+	usuario_responsavel int,
+	setor_solicitante int,
+	primary key (id_solicitacao),
+	foreign key (usuario_responsavel) references usuario(id_usuario),
+	foreign key (setor_solicitante) references setor(cod_setor)
+);
+
+
+CREATE TABLE movimentacao(
+	id_movimentacao serial not null,
+	data_mov date,
+	id_solicitacao int,
+	almox_destino int,
+	primary key (id_movimentacao),
+	foreign key (id_solicitacao) references solicitacao(id_solicitacao),
+	foreign key (almox_destino) references setor(cod_setor)
+);
+
+
+
+CREATE TABLE setor_material(
+	cod_setor int,
+	id_material int,
+	quantidade int,
+	foreign key (cod_setor) references setor(cod_setor),
+	foreign key (id_material) references material(id_material)
+);
+
+CREATE TABLE material_movimentacao(
+	id_movimentacao int,
+	id_material int,
+	quantidade int,
+	foreign key (id_movimentacao) references movimentacao(id_movimentacao),
+	foreign key (id_material) references material(id_material)
+); 
+
+CREATE TABLE material_solicitacao(
+	id_solicitacao int,
+	id_material int,
+	quantidade int,
+	foreign key (id_solicitacao) references solicitacao(id_solicitacao),
+	foreign key (id_material) references material(id_material)
+);

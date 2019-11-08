@@ -1,0 +1,68 @@
+insert into categoria(nome_categoria, area_categoria)
+	values ('odontologia','saude');
+
+insert into setor(nome_setor, atencao_saude)
+	values ('Dom Antônio Reis','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('José Erasmo Crossetti','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Centro Social Urbano','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Waldir Mozzaquatro','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Oneyde de Carvalho','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Passo das Tropas','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Walter Aita','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('São Francisco','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Floriano Rocha','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Itararé','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Kennedy','Atenção Básica');
+insert into setor(nome_setor, atencao_saude)
+	values ('Wilson Paulo Noal','Atenção Básica');
+
+
+
+
+
+insert into tipo_usuario(tipousuario) 
+	values ('comum');
+insert into tipo_usuario(tipousuario) 
+	values ('admin');
+
+insert into material(nome_material, unidade_medida, id_categoria) 
+	values ('Abaixador de Lingua','Unitário',1);
+insert into material(nome_material, unidade_medida, id_categoria) 
+	values ('Lima para osso','Unitário',1);
+insert into material(nome_material, unidade_medida, id_categoria) 
+	values ('Luva de limpeza Látex G','Unitário',1);
+insert into material(nome_material, unidade_medida, id_categoria) 
+	values ('Luva de limpeza Látex M','Unitário',1);
+insert into material(nome_material, unidade_medida, id_categoria) 
+	values ('Luva de limpeza Látex P','Unitário',1);
+
+insert into usuario(login_usuario, senha_usuario, situacao_usuario, id_tipousuario, cod_setor)
+	values ('lucas@mail.com','12345', true, 2, 1);
+
+insert into solicitacao(data_solicitacao, status_solicitacao, observacao, 
+	usuario_responsavel, setor_solicitante)
+		values(date,"pendente", "sem observacao", 1, 1);
+
+insert into movimentacao(data_movimentacao, id_solicitacao, almox_destino)
+	values(date, 2 , 1);
+
+insert into setor_material(cod_setor, id_material, quantidade)
+	values(1, 1, 23);
+insert into setor_material(cod_setor, id_material, quantidade)
+	values(1, 3, 15);
+
+insert into material_movimentacao(id_movimentacao, id_material, quantidade)
+	values(1, 1, 13);
+
+insert into material_solicitacao(id_solicitacao, id_material, quantidade)
+	values(1, 1, 8);
