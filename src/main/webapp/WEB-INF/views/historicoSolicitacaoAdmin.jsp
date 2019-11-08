@@ -99,7 +99,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="index"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
                     <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
@@ -132,7 +132,7 @@
                 Histórico de Solicitações
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Histórico de Solicitações</li>
 
             </ol>
