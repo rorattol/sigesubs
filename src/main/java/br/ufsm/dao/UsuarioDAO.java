@@ -161,7 +161,7 @@ public class UsuarioDAO {
 
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery("select u.id_usuario, u.nome_usuario,  u.senha_usuario, u.login_usuario, " +
-                    "                       u.situacao_usuario, tu.tipousuario, s.nome_setor\n" +
+                                            "u.situacao_usuario, tu.tipousuario, s.nome_setor\n" +
                                                 "from usuario u, tipo_usuario tu, setor s\n" +
                                                     "where u.id_tipousuario = tu.id_tipousuario and u.cod_setor = s.cod_setor;");
 

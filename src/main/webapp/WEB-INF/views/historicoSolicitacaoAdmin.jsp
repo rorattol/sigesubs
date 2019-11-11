@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,14 +63,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<%--                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
+                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-<%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
-
+                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>${logado.nomeUsuario}
                                     <small>Administrador</small>
                                 </p>
@@ -148,6 +148,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <jsp:useBean id="solicitacaoDAO" class="br.ufsm.dao.SolicitacaoDAO"></jsp:useBean>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -159,13 +160,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach var="historico" items="${historico}">
                                 <tr>
                                     <td>Mariana</td>
                                     <td>Dom Antonio</td>
                                     <td> 11-7-2014</td>
-                                    <td><span class="label label-danger">Negado</span></td>
-                                    <td><a href="detalheHistoricoAdmin" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
+                                    <td>
+                                    <c:if test="${historico.status == 'Negado'}">
+                                        <span class="label label-danger">Negado</span>
+                                    </c:if>
+                                    <c:if test="${historico.status == 'Aceito'}">
+                                        <span class="label label-success">Aceito</span>
+                                    </c:if>
+                                    <c:if test="${historico.status == 'Aceito com Ajustes'}">
+                                        <span class="label label-warning">Aceito com Ajustes</span>
+                                    </c:if>
+                                    </td>
+                                    <td><a href="detalheHistoricoAdmin?id=${historico.idSolicitacao}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
+                                </c:forEach>
                                 <tr>
 
                                     <td>Joana</td>
@@ -175,21 +188,6 @@
                                     <td><a href="detalheHistoricoAdmin" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 <tr>
-
-                                    <td>Felipe</td>
-                                    <td>Urlandia</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><a href="detalheHistoricoAdmin" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>André</td>
-                                    <td>Camobi</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><a href="detalheHistoricoAdmin" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -236,8 +234,7 @@
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+
 <!-- page script -->
 <script>
     $(function () {
