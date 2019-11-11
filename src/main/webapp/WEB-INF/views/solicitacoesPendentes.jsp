@@ -114,22 +114,22 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
+                    <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
                 <li>
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
                 <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
+                    <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
                 </li>
                 <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
+                    <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
                 </li>
                 <%--<li>
                     <a href="estoqueAlmox"><i class="fa fa-th"></i> <span>Adicionar Materiais ao Almox</span></a>
@@ -160,7 +160,7 @@
                     <div class="box">
                         <div class="box-header">
                             <div class="col-md-12">
-                                <h3 class="box-title">Unidade ${infoSolic.setor.nomeSetor}</h3>
+                                <h3 class="box-title">Unidade ${infoSolic.setorSolicitante.nomeSetor}</h3>
                             </div>
                             <div class="pull-right box-tools">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Avaliar Solicitação</button>
@@ -169,7 +169,7 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>${infoSolic.usuario.nomeUsuario}</dd>
+                                        <dd>${infoSolic.usuarioSolicitante.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
                                         <dd>${infoSolic.dataSolicitacao}</dd>

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Solicitacao {
 
-    private int idSolicitacao;
+    private int id;
     private Date dataSolicitacao;
     private String statusSolicitacao;
     private String observacao;
@@ -15,8 +15,8 @@ public class Solicitacao {
 
     }
 
-    public Solicitacao(int idSolicitacao, Date dataSolicitacao, String statusSolicitacao, String observacao, Usuario usuarioSolicitante, Setor setorSolicitante) {
-        this.idSolicitacao = idSolicitacao;
+    public Solicitacao(int id, Date dataSolicitacao, String statusSolicitacao, String observacao, Usuario usuarioSolicitante, Setor setorSolicitante) {
+        this.id = id;
         this.dataSolicitacao = dataSolicitacao;
         this.statusSolicitacao = statusSolicitacao;
         this.observacao = observacao;
@@ -24,12 +24,12 @@ public class Solicitacao {
         this.setorSolicitante = setorSolicitante;
     }
 
-    public int getIdSolcitacao() {
-        return idSolicitacao;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSolcitacao(int idSolcitacao) {
-        this.idSolicitacao = idSolcitacao;
+    public void setId(int idSolcitacao) {
+        this.id = idSolcitacao;
     }
 
     public Date getDataSolicitacao() {

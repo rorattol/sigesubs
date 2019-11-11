@@ -42,7 +42,6 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
     <header class="main-header">
         <!-- Logo -->
         <a href="index2.html" class="logo">
@@ -90,7 +89,6 @@
             </div>
         </nav>
     </header>
-
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -99,22 +97,22 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
+                    <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
                 <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
+                    <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
                 <li>
                     <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
                 </li>
                 <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
+                    <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
                 </li>
                 <%--<li>
                     <a href="estoqueAlmox"><i class="fa fa-th"></i> <span>Adicionar Materiais ao Almox</span></a>
@@ -123,7 +121,6 @@
         </section>
         <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -136,7 +133,6 @@
                 <li class="active">Transferir Materiais</li>
             </ol>
         </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -145,9 +141,20 @@
                         <div class="box-header">
                             <h3 class="box-title">Materiais</h3>
                         </div>
-                        <form action="#" method="post">
                         <!-- /.box-header -->
+
                         <div class="box-body">
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-lg" style="max-width: 750px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
 
                             <table id="example2" class="table table-bordered table-hover">
                                 <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
@@ -156,7 +163,7 @@
                                     <th>Nome Material</th>
                                     <th>Unidade de Medida</th>
                                     <th style="width: 65px">Estoque Atual</th>
-                                    <th style="width: 190px">Ação</th>
+                                    <th style="width: 190px">Quantidade a ser adicionada</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -180,9 +187,8 @@
 <%--														  <span class="glyphicon glyphicon-plus"></span>--%>
 <%--													  </button>--%>
 <%--												  </span>--%>
-                                        </div>
+<%--                                        </div>--%>
                                     </td>
-                                    </c:forEach>
                                     <!--
                                     <div class="input-group">
                                     <input type="button" value="-" class="button-minus" data-field="quantity">
@@ -191,8 +197,8 @@
                                     </div>-->
                                     <!--		https://bootsnipp.com/snippets/dGWP
                                     http://jsfiddle.net/polaszk/1oyfxoor/ -->
-
                                 </tr>
+                                </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -202,13 +208,10 @@
                                     <th>Ações</th>
                                 </tr>
                                 </tfoot>
-
-
                             </table>
                             <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
                             <a href="transferirMaterial" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
                         </div>
-                        </form>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->

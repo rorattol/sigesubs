@@ -45,7 +45,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="menuAdmin" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">UBS</span>
             <!-- logo for regular state and mobile devices -->
@@ -63,18 +63,17 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="../../dist/img/user2-160x160.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="../../dist/img/user2-160x160.png" class="img-circle" alt="User Image">
                                 <p>${logado.nomeUsuario}
                                     <small>Administrador</small>
                                 </p>
                             </li>
-
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
@@ -99,25 +98,25 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
+                    <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
                 <li>
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
                 <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
+                    <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
                 <li>
                     <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
                 </li>
-                <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
+                <li class="active">
+                    <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
                 </li>
                 <%--<li>
-                    <a href="estoqueAlmox"><i class="fa fa-th"></i> <span>Adicionar Materiais ao Almox</span></a>
+                    <a href="estoqueAlmox"><i class="fa fa-fw fa-comments-o"></i> <span>Adicionar Materiais ao Almox</span></a>
                 </li>--%>
             </ul>
         </section>
@@ -134,7 +133,6 @@
             <ol class="breadcrumb">
                 <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Histórico de Solicitações</li>
-
             </ol>
         </section>
 
@@ -162,32 +160,23 @@
                                 <tbody>
                                 <c:forEach var="historico" items="${historico}">
                                 <tr>
-                                    <td>Mariana</td>
-                                    <td>Dom Antonio</td>
-                                    <td> 11-7-2014</td>
+                                    <td>${historico.usuarioSolicitante.nomeUsuario}</td>
+                                    <td>${historico.setorSolicitante.nomeSetor}</td>
+                                    <td>${historico.dataSolicitacao}</td>
                                     <td>
-                                    <c:if test="${historico.status == 'Negado'}">
+                                    <c:if test="${historico.statusSolicitacao == 'Negado'}">
                                         <span class="label label-danger">Negado</span>
                                     </c:if>
-                                    <c:if test="${historico.status == 'Aceito'}">
+                                    <c:if test="${historico.statusSolicitacao == 'Aceito'}">
                                         <span class="label label-success">Aceito</span>
                                     </c:if>
-                                    <c:if test="${historico.status == 'Aceito com Ajustes'}">
+                                    <c:if test="${historico.statusSolicitacao == 'Aceito com Ajustes'}">
                                         <span class="label label-warning">Aceito com Ajustes</span>
                                     </c:if>
                                     </td>
-                                    <td><a href="detalheHistoricoAdmin?id=${historico.idSolicitacao}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
+                                    <td><a href="detalheHistoricoAdmin?id=${historico.id}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
                                 </c:forEach>
-                                <tr>
-
-                                    <td>Joana</td>
-                                    <td>Lidia</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-success">Aceito</span></td>
-                                    <td><a href="detalheHistoricoAdmin" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -208,8 +197,6 @@
 
             </div>
         </section>
-
-
     </div>
     <!-- ./wrapper -->
 

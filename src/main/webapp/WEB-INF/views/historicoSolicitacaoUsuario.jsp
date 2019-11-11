@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,13 +63,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="../../dist/img/user2-160x160.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="../../dist/img/user2-160x160.png" class="img-circle" alt="User Image">
 
                                 <p>${logado.nomeUsuario}
                                     <small>Usuario UBS</small>
@@ -149,34 +150,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Maria</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-danger">Negado</span></td>
-                                    <td><a href="detalheHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>João</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-success">Aceito</span></td>
-                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Tereza</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Ana</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Aceito com Ajustes</span></td>
-                                    <td><a href="detalhesHistoricoUsuario" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-
+                                <c:forEach var="historico" items="${historico}">
+                                    <tr>
+                                        <td>{historico.usuarioSolicitante.nomeUsuario}</td>
+                                        <td>{historico.dataSolicitacao}</td>
+                                        <td>
+                                            <c:if test="{historico.statusSolicitacao == 'Negado'}">
+                                                <span class="label label-danger">Negado</span>
+                                            </c:if>
+                                            <c:if test="{historico.statusSolicitacao == 'Aceito'}">
+                                                <span class="label label-success">Aceito</span>
+                                            </c:if>
+                                            <c:if test="{historico.statusSolicitacao == 'Aceito com Ajustes'}">
+                                                <span class="label label-warning">Aceito com Ajustes</span>
+                                            </c:if>
+                                        </td>
+                                        <td><a href="detalheHistoricoUsuario?id={historico.id}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>

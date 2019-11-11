@@ -73,7 +73,7 @@ public class SolicitacaoDAO {
                 usu.setIdUsuario(rs.getInt("id_usuario"));
                 usu.setNomeUsuario(rs.getString("nome_usuario"));
                 solic.setUsuarioSolicitante(usu);
-                solic.setIdSolcitacao(rs.getInt("id_solicitacao"));
+                solic.setId(rs.getInt("id_solicitacao"));
                 solic.setDataSolicitacao(rs.getDate("data_solicitacao"));
                 solic.setStatusSolicitacao(rs.getString("status_solicitacao"));
 
@@ -110,7 +110,7 @@ public class SolicitacaoDAO {
                 usu.setIdUsuario(rs.getInt("id_usuario"));
                 usu.setNomeUsuario(rs.getString("nome_usuario"));
                 solic.setUsuarioSolicitante(usu);
-                solic.setIdSolcitacao(rs.getInt("id_solicitacao"));
+                solic.setId(rs.getInt("id_solicitacao"));
                 solic.setDataSolicitacao(rs.getDate("data_solicitacao"));
                 solic.setObservacao(rs.getString("observacao"));
                 solic.setStatusSolicitacao(rs.getString("status_solicitacao"));
@@ -149,7 +149,7 @@ public class SolicitacaoDAO {
                 usu.setIdUsuario(rs.getInt("id_usuario"));
                 usu.setNomeUsuario(rs.getString("nome_usuario"));
                 solic.setUsuarioSolicitante(usu);
-                solic.setIdSolcitacao(rs.getInt("id_solicitacao"));
+                solic.setId(rs.getInt("id_solicitacao"));
                 solic.setDataSolicitacao(rs.getDate("data_solicitacao"));
                 solic.setObservacao(rs.getString("observacao"));
                 solic.setStatusSolicitacao(rs.getString("status_solicitacao"));
