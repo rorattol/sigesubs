@@ -49,12 +49,19 @@ insert into material(nome_material, unidade_medida, id_categoria)
 insert into usuario(login_usuario, senha_usuario, situacao_usuario, id_tipousuario, cod_setor)
 	values ('lucas@mail.com','12345', true, 2, 1);
 
-insert into solicitacao(data_solicitacao, status_solicitacao, observacao, 
-	usuario_responsavel, setor_solicitante)
-		values(date,"pendente", "sem observacao", 1, 1);
+
+insert into solicitacao(status_solicitacao, observacao, usuario_responsavel)
+	values('Negado', 'Itens não constam em estoque', 1);
+
+insert into solicitacao(status_solicitacao, observacao, usuario_responsavel)
+	values('Aceito', 'sem observacao', 1);
+
+insert into solicitacao(status_solicitacao, observacao,usuario_responsavel)
+	values('Pendente', 'sem observacao', 1);
+
 
 insert into movimentacao(id_solicitacao, almox_destino)
-	values(2 , 1);
+	values(4 , 1);
 
 
 
