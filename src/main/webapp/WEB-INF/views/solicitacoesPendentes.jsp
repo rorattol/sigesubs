@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,14 +78,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<%--                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
+                            <img src="../../dist/img/user2-160x160.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-<%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
-
+                                <img src="../../dist/img/user2-160x160.png" class="img-circle" alt="User Image">
                                 <p>${logado.nomeUsuario}
                                     <small>Administrador</small>
                                 </p>
@@ -160,7 +160,7 @@
                     <div class="box">
                         <div class="box-header">
                             <div class="col-md-12">
-                                <h3 class="box-title">Unidade Dom Antonio Reis</h3>
+                                <h3 class="box-title">Unidade ${infoSolic.setor.nomeSetor}</h3>
                             </div>
                             <div class="pull-right box-tools">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Avaliar Solicitação</button>
@@ -169,14 +169,13 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>Luiz Pedro</dd>
+                                        <dd>${infoSolic.usuario.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
-                                        <dd>12/12/2012</dd>
+                                        <dd>${infoSolic.dataSolicitacao}</dd>
                                         <br/>
                                         <dt>Status</dt>
-                                        <dd>Pendente</dd>
-
+                                        <dd>${infoSolic.statusSolicitacao}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -225,22 +224,22 @@
 
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
+                                                    <input class="form-check-input" type="radio" name="op" id="exampleRadios1" value="1">
                                                     <label class="form-check-label" for="exampleRadios1">Rejeitar</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2" checked>
+                                                    <input class="form-check-input" type="radio" name="op" id="exampleRadios2" value="2" checked>
                                                     <label class="form-check-label" for="exampleRadios2">Aceitar com Ajuste</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
+                                                    <input class="form-check-input" type="radio" name="op" id="exampleRadios3" value="3">
                                                     <label class="form-check-label" for="exampleRadios3">Aceitar</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Observações</label>
-                                                <textarea class="form-control" rows="3" name="observacao" placeholder="Digite observações sobre essa Solicitação"></textarea>
+                                                <textarea class="form-control" rows="3" name="obs" placeholder="Digite observações sobre essa Solicitação"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -283,8 +282,6 @@
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     $(function () {

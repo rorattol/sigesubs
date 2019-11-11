@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,13 +63,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-<%--                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
+                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-<%--                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--%>
+                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>${logado.nomeUsuario}
                                     <small>Administrador</small>
@@ -146,6 +147,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <jsp:useBean id="SolicitacaoDAO" class="br.ufsm.dao.SolicitacaoDAO"></jsp:useBean>
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -156,34 +158,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach var="solicitacoes" items="${solicitacoes}">
                                 <tr>
-                                    <td>Matheus</td>
-                                    <td>Dom Antonio</td>
-                                    <td> 11-7-2014</td>
-                                    <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
+                                    <td>{solicitacoes.usuario.nomeUsuario}</td>
+                                    <td>{solicitacoes.setor.nomeSetor}</td>
+                                    <td>{solicitacoes.dataSolicitacao}</td>
+                                    <td><a href="detalhesSolicitacao?id={solicitacoes.idSolicitacao}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                 </tr>
-                                <tr>
-
-                                    <td>Karen</td>
-                                    <td>Lidia</td>
-                                    <td>11-7-2014</td>
-                                    <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Gabriela</td>
-                                    <td>Urlandia</td>
-                                    <td>11-7-2014</td>
-                                    <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Gabriel</td>
-                                    <td>Camobi</td>
-                                    <td>11-7-2014</td>
-                                    <td><a href="detalhesSolicitacao" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
-                                </tr>
-
+                                </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>
