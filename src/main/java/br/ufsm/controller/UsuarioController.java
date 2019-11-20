@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UsuarioController{
 
+    @PostMapping("/emailRecuperacao")
+    String recuperacao(String email, Model model){
+        System.out.println(email);
+        model.addAttribute("sucesso", "Sua senha foi enviada para seu email.");
+        return "index";
+    }
+
     @RequestMapping("menuAdmin")
     String menuA(Model model){
         model.addAttribute("unidades", new SetorDAO().getSetor());
@@ -51,13 +58,6 @@ public class UsuarioController{
 
         return "views/perfilVisualizar";
     }
-
-    @RequestMapping("editarPerfil")
-    String editPerfil(Model model){
-
-        return "views/perfilEditar";
-    }
-
 
 
     @PostMapping("updateUsuario")

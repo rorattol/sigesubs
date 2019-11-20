@@ -98,23 +98,23 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
-                <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
+                <li class="active">
+                    <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
+                    <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
                 <li>
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
                 <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
+                    <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
                 <li>
                     <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
                 </li>
                 <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
+                    <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
                 </li>
             </ul>
         </section>
@@ -192,13 +192,11 @@
     </div>
     <!-- ./wrapper -->
 
-
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.18
+            <b>Versão</b> 1.0.1
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
+        Sistema de Gerenciamento de Estoque para Unidades Básicas de Saúde.
     </footer>
 </div>
 <!-- jQuery 3 -->
@@ -214,8 +212,6 @@
 <script src="../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     $(function () {

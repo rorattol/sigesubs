@@ -1,5 +1,6 @@
 package br.ufsm.dao;
 
+import br.ufsm.model.Material;
 import br.ufsm.model.Setor;
 import br.ufsm.model.Solicitacao;
 import br.ufsm.model.Usuario;
@@ -14,6 +15,31 @@ public class SolicitacaoDAO {
     ResultSet rs;
     boolean retorno = false;
 
+    public ArrayList<Material> getMateriaisSolicitacao(int id) {
+        ArrayList<Material> materiais = new ArrayList<>();
+
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+
+            sql = "SELECT m.*, ms.quantidade FROM material_solicitacao ms, material m " +
+                    "WHERE ms.id_material = m.id_material AND id_solicitacao = 1; ?";
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, id);
+            rs = pre.executeQuery();
+
+            while (rs.next()) {
+
+                Material mat = new Material();
+                mat.setIdMaterial(rs.getInt("id_material"));
+                mat.setNomeMaterial(rs.getString("nome_material"));
+                mat.setUnidadeMedida(rs.getString("unidade_medida"));
+                materiais.add(mat);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return materiais;
+    }
 
     public ArrayList<Solicitacao> getHistoricoSolicitacoes(int id) {
         ArrayList<Solicitacao> solicitacoes = new ArrayList<>();

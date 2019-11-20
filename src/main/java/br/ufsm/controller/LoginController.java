@@ -9,15 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpSession;
 
 
 @Controller
 public class LoginController{
-@GetMapping ("/")
-String index(){
-    return "index";
-}
+    @GetMapping ("/")
+    String index(){
+        return "index";
+    }
+
+    @RequestMapping("/recuperarSenha")
+    String recoverPwd(){
+        return "recuperarSenha";
+    }
 
     @PostMapping("login")
     String logar(Usuario usuario, HttpSession sessao, Model model){
@@ -34,7 +41,6 @@ String index(){
             System.out.println(usuario.getSetor().getIdSetor());
 
             if(usuario.getTipoUsuario().getIdTipoUsuario() == 1){  //usuario comum
-
                 model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetor(usuario.getSetor().getIdSetor()));
                 System.out.println("menuUsuario");
                 return "menuUsuario";
@@ -48,7 +54,7 @@ String index(){
             }
         }
         else{
-            model.addAttribute("mensagem", "usuario ou senha incorretos");
+            model.addAttribute("erro", "usuario ou senha incorretos");
             return "index";
         }
     }

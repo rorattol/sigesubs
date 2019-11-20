@@ -3,6 +3,7 @@ package br.ufsm.controller;
 import br.ufsm.dao.SolicitacaoDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,14 +16,15 @@ public class HistoricoSolicitacaoAdminController {
         return "views/historicoSolicitacaoAdmin";
     }
 
-    @RequestMapping("/detalheHistoricoAdmin")
+    @GetMapping("/detalheHistoricoAdmin")
     String detalhesAdmin(@RequestParam("id") int idSol,Model model){
         model.addAttribute("historico", new SolicitacaoDAO().getHistoricoSolicitacoes(idSol));
         return "views/detalhesHistoricoAdmin";
     }
 
     @RequestMapping("/historicoUsuario")
-    String index1(){
+    String index1(Model model){
+        model.addAttribute("historico", new SolicitacaoDAO().getHistoricoSolicitacoes());
         return "views/historicoSolicitacaoUsuario";
     }
 

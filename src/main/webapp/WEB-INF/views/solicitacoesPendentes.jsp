@@ -160,7 +160,7 @@
                     <div class="box">
                         <div class="box-header">
                             <div class="col-md-12">
-                                <h3 class="box-title">Unidade ${infoSolic.setorSolicitante.nomeSetor}</h3>
+                                <h3 class="box-title">Unidade {infoSolic.setorSolicitante.nomeSetor}</h3>
                             </div>
                             <div class="pull-right box-tools">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Avaliar Solicitação</button>
@@ -169,13 +169,13 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>${infoSolic.usuarioSolicitante.nomeUsuario}</dd>
+                                        <dd>{infoSolic.usuarioSolicitante.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
-                                        <dd>${infoSolic.dataSolicitacao}</dd>
+                                        <dd>{infoSolic.dataSolicitacao}</dd>
                                         <br/>
                                         <dt>Status</dt>
-                                        <dd>${infoSolic.statusSolicitacao}</dd>
+                                        <dd>{infoSolic.statusSolicitacao}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -186,6 +186,7 @@
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
+                                        <th style="width: 50px">Estoque atual</th>
                                         <th style="width: 70px">Quantidade Pedida</th>
                                     </tr>
                                     </thead>
@@ -193,6 +194,9 @@
                                     <tr>
                                         <td>Trident</td>
                                         <td>Win 95+</td>
+                                        <td>
+                                            <input type="text" class="form-control" value="3" disabled>
+                                        </td>
                                         <td> 4</td>
                                     </tr>
                                     </tbody>
@@ -200,6 +204,7 @@
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
+                                        <th>Estoque atual</th>
                                         <th>Quantidade Pedida</th>
                                     </tr>
                                     </tfoot>

@@ -43,9 +43,22 @@
         Gerenciador de Materiais Odontológicos</br>
         para <b>Unidades Básicas de Saúde</b>
     </div>
-    <c:if test="${not empty mensagem}">
-        <h3><strong style="color:#ff0000">${mensagem}</strong></h3>
-    </c:if>
+    <div class="error-page">
+        <c:if test="${not empty sucesso}">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+                    ${sucesso}
+            </div>
+        </c:if>
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                    ${erro}
+            </div>
+        </c:if>
+    </div>
 
 <div class="login-box">
     <div class="login-box-body">
@@ -74,7 +87,7 @@
                 <!-- /.col -->
             </div>
         </form>
-        <a href="#">Esqueci minha senha</a><br>
+        <a href="recuperarSenha">Esqueci minha senha</a><br>
     </div>
     <!-- /.login-box-body -->
 </div>

@@ -102,10 +102,10 @@
                 <li>
                     <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
                 <li>

@@ -180,7 +180,7 @@
                                 </tfoot>
                             </table>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
+                                <button type="submit" class="btn btn-success pull-right">Dar Baixa</button>
                                 <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                             </div>

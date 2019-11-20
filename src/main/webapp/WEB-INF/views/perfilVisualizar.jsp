@@ -134,6 +134,21 @@
             </ol>
         </section>
 
+        <c:if test="${not empty sucesso}">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+                    ${sucesso}
+            </div>
+        </c:if>
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                    ${erro}
+            </div>
+        </c:if>
+
         <!-- Main content -->
         <section class="content">
 
@@ -145,10 +160,9 @@
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user2-160x160.png" alt="User profile picture">
 
-                            <h3 class="profile-username text-center">Nome Usuario</h3>
+                            <h3 class="profile-username text-center">${logado.nomeUsuario}</h3>
 
-                            <p class="text-muted text-center">Administrador Geral</p>
-
+                            <p class="text-muted text-center">${logado.tipoUsuario.nomeTipoUsuario}</p>
 
                         </div>
                         <!-- /.box-body -->
@@ -164,52 +178,29 @@
                             <div class="box-header">
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="inputName" class="col-sm-2 control-label">Name</label>
-
+                                        <label for="inputName" class="col-sm-2 control-label">Nome</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                            <input type="email" class="form-control" id="inputName" placeholder="Nome" value="${logado.nomeUsuario}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputName" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email"value="${logado.loginUsuario}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                    <a href="#" data-toggle="modal" data-target="#modal-default">Trocar Senha</a>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                            <button type="submit" class="btn btn-success">Atualizar Perfil</button>
                                         </div>
                                     </div>
                                 </form>
@@ -220,9 +211,40 @@
                     <!-- /.nav-tabs-custom -->
                 </div>
                 <!-- /.col -->
+
+                <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Atualizar Senha</h4>
+                            </div>
+                            <form method="post" action="#">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="inputSenha">Senha Atual</label>
+                                        <input type="password" class="form-control" id="inputSenha" name="senha">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputSenhaNova">Digite sua nova senha</label>
+                                        <input type="password" class="form-control" id="inputSenhaNova" name="senhaUsuario">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                                    <button type="submit" class="btn btn-success">Atualizar Senha</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
             </div>
             <!-- /.row -->
-
         </section>
         <!-- /.content -->
     </div>

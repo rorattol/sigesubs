@@ -72,7 +72,7 @@
                                 <img src="../../dist/img/user2-160x160.png" class="img-circle" alt="User Image">
                                 <p>
                                     ${logado.nomeUsuario}
-                                    <small>Administrador</small>
+                                    <small>${logado.tipoUsuario.nomeTipoUsuario}</small>
                                 </p>
                             </li>
 

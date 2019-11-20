@@ -19,7 +19,7 @@ public class SolicitacaoController {
     @GetMapping("detalhesSolicitacao")
     String detalhesSol(@RequestParam("id") int idSolic , Model model) {
         model.addAttribute("infoSolic", new SolicitacaoDAO().getSolicitacoes(idSolic));
-        //model.addAttribute("materiais", new SolicitacaoDAO());     //MATERIAL_SOLICITACAO
+        model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(idSolic));     //MATERIAL_SOLICITACAO
         return "views/solicitacoesPendentes";
     }
 
@@ -42,11 +42,11 @@ public class SolicitacaoController {
 
         }
         else{
-            model.addAttribute("erro", "Não foi possivel cadastrar");
+            model.addAttribute("erro", "Erro ao realizar solicitação. Tente novamente.");
             return "views/gerenciarSolicitacao";
         }
 
-        model.addAttribute("sucesso", "Usuario Cadastrado com sucesso");
+        model.addAttribute("sucesso", "Avaliação realizada com sucesso.");
         return "views/gerenciarSolicitacao";
     }
 

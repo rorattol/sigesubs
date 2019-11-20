@@ -170,6 +170,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="inputSenha">Senha do Usuário</label>
+                                    <input type="password" class="form-control" id="inputSenha" name="senhaUsuario">
+                                </div>
+                                <div class="form-group">
                                     <label>Função</label>
                                     <div class="row">
                                         <div class="col-lg-6">
