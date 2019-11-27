@@ -140,13 +140,24 @@
                         <!-- /.box-header -->
                         <div class="box-body">
 
+                            <div class="box-tools">
+                                <div class="input-group input-group-lg" style="max-width: 750px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>Nome do Material</th>
                                     <th>Unidade de Medida</th>
                                     <th style="width: 65px">Estoque Atual</th>
-                                    <th style="width: 40px">Ação</th>
+                                    <th style="width: 85px">Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -156,37 +167,7 @@
                                     <td><input type="text" class="form-control" value="17" disabled></td>
                                     <td>
                                         <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                            <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>resina composta cor B2</td>
-                                    <td>Unitário</td>
-                                    <td><input type="text" class="form-control" value="17" disabled></td>
-                                    <td>
-                                        <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                            <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
+                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="99" step="1">
                                         </div>
                                     </td>
                                 </tr>
@@ -220,9 +201,9 @@
     <!-- ./wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.18
+            <b>Versão</b> 1.0.1
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights reserved.
+        Sistema de Gerenciamento de Estoque para Unidades Básicas de Saúde.
     </footer>
 
 </div>
