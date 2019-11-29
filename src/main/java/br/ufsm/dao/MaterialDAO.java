@@ -1,9 +1,12 @@
 package br.ufsm.dao;
 
 import br.ufsm.model.Material;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import org.apache.jasper.util.FastRemovalDequeue;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MaterialDAO {
     String sql = "";
@@ -105,4 +108,100 @@ public class MaterialDAO {
 
         return materiais;
     }
+
+    public void movimentar(Map<Integer, Integer> materiais, int idSetorDestino) {
+
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+
+            String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (null, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//            stmt.setInt(1, idSolicitacao);
+            stmt.setInt(1, idSetorDestino);
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idMov = generatedKeys.getInt(1);
+
+                   materiais.forEach((idMaterial, quantidade) -> {
+                        String sql1 = "INSERT INTO material_movimentacao (id_material, quantidade, id_movimentacao) VALUES (?, ?, ?)";
+                        try {
+                        PreparedStatement stmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+                        stmt1.setInt(1, idMaterial);
+                        stmt1.setInt(2, quantidade);
+                        stmt1.setInt(3, idMov);
+
+                            stmt1.executeUpdate();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                    });
+                    conn.commit();
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }
+    }
+
+
+
+    public void transferir(Map<Integer, Integer> materiais, int idSetorDestino) {
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+
+            String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (null, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idSetorDestino);
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+
+                if (true) {
+
+
+//                    DO $$ BEGIN
+                    materiais.forEach((idMaterial, quantidade) -> {
+//                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
+                        //String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
+                        String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                        try {
+                            CallableStatement stmt1 = conn.prepareCall(sql1);
+                            stmt1.setInt(1, idSetorDestino);
+                            stmt1.setInt(2, idMaterial);
+                            stmt1.setInt(3, quantidade);
+
+                            stmt1.execute();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                    });
+//
+                    conn.commit();
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }
+    }
+
+//
+//    CREATE OR REPLACE FUNCTION upsert_setor_material(cod_unidade int, id_mat int, qtd int) RETURNS VOID AS $$
+//    DECLARE
+//
+//            BEGIN
+//    UPDATE setor_material SET quantidade = quantidade+(qtd) where id_material = id_mat AND cod_setor = cod_unidade;
+//    IF NOT FOUND THEN
+//    INSERT INTO setor_material (id_material, quantidade, cod_setor) VALUES (id_mat, qtd, cod_unidade);
+//    END IF;
+//    END;
+//    $$ LANGUAGE plpgsql;
+
 }

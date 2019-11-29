@@ -57,7 +57,7 @@ insert into solicitacao(status_solicitacao, observacao, usuario_responsavel)
 	values('Aceito', 'sem observacao', 1);
 
 insert into solicitacao(status_solicitacao, observacao,usuario_responsavel)
-	values('Pendente', 'sem observacao', 1);
+	values('pendente', 'sem observacao', 1);
 
 
 insert into movimentacao(id_solicitacao, almox_destino)

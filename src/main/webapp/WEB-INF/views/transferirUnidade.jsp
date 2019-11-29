@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
     <!-- Theme style -->
@@ -137,25 +139,31 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="box">
+                    <form class="box" method="post" action="transferir">
                         <div class="box-header">
-                            <h3 class="box-title">Materiais</h3>
+                            <h3 class="box-title">Materiais </h3>
+<%--                            - Unidade {unidade.nomeSetor}--%>
                         </div>
                         <!-- /.box-header -->
-
                         <div class="box-body">
 
-                            <div class="box-tools">
-                                <div class="input-group input-group-lg" style="max-width: 750px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">
+<%--                            <div class="box-tools">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group input-group-lg" style="max-width: 750px;">--%>
+<%--                                        <select class="form-control select2" style="width: 100%;">--%>
+<%--                                            <option selected="selected">Alabama</option>--%>
+<%--                                            <option>Alaska</option>--%>
+<%--                                            <option>California</option>--%>
+<%--                                            <option>Delaware</option>--%>
+<%--                                            <option>Tennessee</option>--%>
+<%--                                            <option>Texas</option>--%>
+<%--                                            <option>Washington</option>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div></br>--%>
 
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            </br>
-
+                            <input type="hidden" name="idSetorDestino" value="${idUnidade}" id="idSetorDestino">
                             <table id="example2" class="table table-bordered table-hover">
                                 <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
                                 <thead>
@@ -167,36 +175,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="estoque" items="${materiais}">
-                                <tr>
+                                <c:forEach var="estoque" items="${estoque}">
+                                <tr class = "item-material">
                                     <td>${estoque.material.nomeMaterial}</td>
+                                    <input name="idMaterial" value="${estoque.material.idMaterial}" type="hidden" class="item-material_id">
                                     <td>${estoque.material.unidadeMedida}</td>
                                     <td>
                                         <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
                                     </td>
                                     <td>
-<%--                                        <div class="input-group">--%>
-<%--												  <span class="input-group-btn">--%>
-<%--													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">--%>
-<%--														  <span class="glyphicon glyphicon-minus"></span>--%>
-<%--													  </button>--%>
-<%--												  </span>--%>
-                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="1" min="1" max="10">
-<%--                                            <span class="input-group-btn">--%>
-<%--													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">--%>
-<%--														  <span class="glyphicon glyphicon-plus"></span>--%>
-<%--													  </button>--%>
-<%--												  </span>--%>
-<%--                                        </div>--%>
+                                        <input type="number" name="quantidade" class="form-control input-number quantity-field item-material_quantidade" value="0" min="0">
                                     </td>
-                                    <!--
-                                    <div class="input-group">
-                                    <input type="button" value="-" class="button-minus" data-field="quantity">
-                                    <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-                                    <input type="button" value="+" class="button-plus" data-field="quantity">
-                                    </div>-->
-                                    <!--		https://bootsnipp.com/snippets/dGWP
-                                    http://jsfiddle.net/polaszk/1oyfxoor/ -->
                                 </tr>
                                 </c:forEach>
                                 </tbody>
@@ -209,15 +198,15 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
+                            <button type="submit" class="btn btn-success pull-right" id="botao-transferir">Transferir Materiais</button>
                             <a href="transferirMaterial" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
                         </div>
-                        <!-- /.box-body -->
+                    </form>
+                    <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                 </div>
                 <!-- /.content-wrapper -->
-            </div>
         </section>
     </div>
     <!-- ./wrapper -->
@@ -233,6 +222,8 @@
 <script src="../../bower_components/jquery/dist/jquery.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- Select2-->
+<script src="../../bower_components/select2/dist/js/select2.full.js"></script>
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.js"></script>
 <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
@@ -245,41 +236,14 @@
 
 <!-- page script -->
 <script>
+    $(function () {
+        //Initialize Select2 Elements
+        //$('.select2').select2()
 
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
-        if (!isNaN(currentVal)) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal) && currentVal > 0) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    $('.input-group').on('click', '.button-plus', function(e) {
-        incrementValue(e);
-    });
-
-    $('.input-group').on('click', '.button-minus', function(e) {
-        decrementValue(e);
-    });
+    })
 </script>
+
 </body>
 </html>
 

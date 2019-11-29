@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,22 +100,22 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
+                    <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
                 </li>
                 <li>
                     <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
                 </li>
                 <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
+                    <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
                 </li>
                 <li>
                     <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
                 </li>
-                <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
+                <li class="active">
+                    <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
                 </li>
                 <%--<li>
                     <a href="estoqueAlmox"><i class="fa fa-th"></i> <span>Adicionar Materiais ao Almox</span></a>
@@ -151,25 +152,14 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>Luiz Pedro</dd>
+                                        <dd>${historico.usuarioSolicitante.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
-                                        <dd>12/12/2012</dd>
+                                        <dd>${historico.dataSolicitacao}</dd>
                                         <br/>
                                         <dt>Status</dt>
-                                        <dd>Negado</dd>
+                                        <dd>${historico.statusSolicitacao}</dd>
 
-                                    </dl>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="box-body">
-                                    <dl>
-                                        <dt>Nome do Avaliador</dt>
-                                        <dd>Maria Tereza</dd>
-                                        <br/>
-                                        <dt>Data da Avaliação</dt>
-                                        <dd>21/12/2012</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -177,7 +167,7 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Observações</dt>
-                                        <dd>Muitos itens solicitados. Grande parte deeles desnecessários</dd>
+                                        <dd>${historico.observacao}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -189,23 +179,35 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th style="width: 70px">Quantidade Pedida</th>
-                                        <th style="width: 70px">Quantidade Enviada</th>
+<%--                                        <th style="width: 70px">Quantidade Enviada</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="pedido" items="${materiais}">
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>0</td>
+                                        <td>${pedido.nomeMaterial}</td>
+                                        <td>${pedido.unidadeMedida}</td>
+                                        <td>${pedido.quantidade}</td>
+<%--                                        <td>--%>
+
+<%--                                            <c:choose>--%>
+<%--                                                <c:when test="${historico.statusSolicitacao == 'Negado'}">--%>
+<%--                                                    0--%>
+<%--                                                </c:when>--%>
+<%--                                                <c:otherwise>--%>
+<%--                                                    {quantidadeEnviada}--%>
+<%--                                                </c:otherwise>--%>
+<%--                                            </c:choose>--%>
+<%--                                        </td>--%>
                                     </tr>
+                                    </c:forEach>
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th>Quantidade Pedida</th>
-                                        <th>Quantidade Enviada</th>
+<%--                                        <th>Quantidade Enviada</th>--%>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -240,8 +242,6 @@
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     $(function () {

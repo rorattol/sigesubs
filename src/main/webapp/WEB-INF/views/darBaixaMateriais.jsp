@@ -134,60 +134,68 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Estoque Atual - Unidade Dom Antônio Reis</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
+                    <form class="box" method="post" action="">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Estoque Atual - Unidade ${logado.setor.nomeSetor}</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <%--                            <div class="box-tools">--%>
+                                <%--                                <div class="input-group input-group-lg" style="max-width: 750px;">--%>
+                                <%--                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">--%>
 
-                            <div class="box-tools">
-                                <div class="input-group input-group-lg" style="max-width: 750px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Materiais Usados">
+                                <%--                                    <div class="input-group-btn">--%>
+                                <%--                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>--%>
+                                <%--                                    </div>--%>
+                                <%--                                </div>--%>
+                                <%--                            </div>--%>
+                                <%--                            </br>--%>
 
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                    </div>
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Nome do Material</th>
+                                        <th>Unidade de Medida</th>
+                                        <th style="width: 65px">Estoque Atual</th>
+                                        <th style="width: 85px">Quantidade usada</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="estoque" items="${materiais}">
+                                        <tr>
+                                            <td>${estoque.material.nomeMaterial}</td>
+                                            <input name="idMaterial" value="${estoque.material.idMaterial}" type="hidden">
+                                            <td>${estoque.material.unidadeMedida}</td>
+                                            <td>
+                                                <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
+                                            </td>
+                                            <td>
+                                                <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="0" min="0" max="10">
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Nome do Material</th>
+                                        <th>Unidade de Medida</th>
+                                        <th>Estoque Atual</th>
+                                        <th>Quantidade usada</th>
+                                    </tr>
+                                    </tfoot>
+
+                                </table>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
+                                    <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
+
                                 </div>
                             </div>
-                            </br>
-
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Nome do Material</th>
-                                    <th>Unidade de Medida</th>
-                                    <th style="width: 120px">Ação</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Porta Agulha Mathieu</td>
-                                    <td>Unitário</td>
-                                    <td>
-                                        <div class="input-group">
-											<input type="number" class="form-control" value="32" min="0" max="200">
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Nome da Unidade</th>
-                                    <th>Complexidade</th>
-                                    <th>Ação</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-success pull-right">Dar Baixa</button>
-                                <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
-
-                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+                        <!-- /.box -->
+                    </form>
                 </div>
                 <!-- /.content-wrapper -->
 

@@ -1,5 +1,6 @@
 package br.ufsm.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Solicitacao {
@@ -10,18 +11,18 @@ public class Solicitacao {
     private String observacao;
     private Usuario usuarioSolicitante;
     private Setor setorSolicitante;
+    private ArrayList<Material> materiais = new ArrayList<>();
 
     public Solicitacao(){
 
     }
 
-    public Solicitacao(int id, Date dataSolicitacao, String statusSolicitacao, String observacao, Usuario usuarioSolicitante, Setor setorSolicitante) {
-        this.id = id;
-        this.dataSolicitacao = dataSolicitacao;
-        this.statusSolicitacao = statusSolicitacao;
-        this.observacao = observacao;
-        this.usuarioSolicitante = usuarioSolicitante;
-        this.setorSolicitante = setorSolicitante;
+    public ArrayList<Material> getMateriais() {
+        return materiais;
+    }
+
+    public void setMateriais(ArrayList<Material> materiais) {
+        this.materiais = materiais;
     }
 
     public int getId() {
@@ -71,4 +72,10 @@ public class Solicitacao {
     public void setSetorSolicitante(Setor setorSolicitante) {
         this.setorSolicitante = setorSolicitante;
     }
+
+
+    public void adicionarMaterial(Material mat){
+        this.materiais.add(mat);
+    }
+
 }

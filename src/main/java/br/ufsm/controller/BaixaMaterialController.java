@@ -10,7 +10,7 @@ public class BaixaMaterialController {
 
     @RequestMapping("/darBaixa")
     String index(Model model){
-       // model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetor());
+        model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetorAtual(1));
         return "views/darBaixaMateriais";
     }
 }

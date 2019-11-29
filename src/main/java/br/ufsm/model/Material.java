@@ -14,6 +14,16 @@ public class Material {
     private String nomeMaterial;
     private String unidadeMedida;
     private int categoria;
+    private int quantidade;
+
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 
     public Material(int idMaterial, String nomeMaterial, String unidadeMedida, int categoria) {
         this.idMaterial = idMaterial;

@@ -152,20 +152,20 @@
                                 <tbody>
                                 <c:forEach var="historico" items="${historico}">
                                     <tr>
-                                        <td>{historico.usuarioSolicitante.nomeUsuario}</td>
-                                        <td>{historico.dataSolicitacao}</td>
+                                        <td>${historico.usuarioSolicitante.nomeUsuario}</td>
+                                        <td>${historico.dataSolicitacao}</td>
                                         <td>
-                                            <c:if test="{historico.statusSolicitacao == 'Negado'}">
+                                            <c:if test="${historico.statusSolicitacao == 'Negado'}">
                                                 <span class="label label-danger">Negado</span>
                                             </c:if>
-                                            <c:if test="{historico.statusSolicitacao == 'Aceito'}">
+                                            <c:if test="${historico.statusSolicitacao == 'Aceito'}">
                                                 <span class="label label-success">Aceito</span>
                                             </c:if>
-                                            <c:if test="{historico.statusSolicitacao == 'Aceito com Ajustes'}">
+                                            <c:if test="${historico.statusSolicitacao == 'Aceito com Ajustes'}">
                                                 <span class="label label-warning">Aceito com Ajustes</span>
                                             </c:if>
                                         </td>
-                                        <td><a href="detalheHistoricoUsuario?id={historico.id}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
+                                        <td><a href="detalheHistoricoUsuario?id=${historico.id}" type="button" class="btn btn-info btn-flat">Ver detalhes</a></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

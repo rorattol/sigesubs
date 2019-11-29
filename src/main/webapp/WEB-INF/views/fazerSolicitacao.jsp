@@ -64,7 +64,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="../../dist/img/user2-160x160.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">${logado.nomeUsuario}</span>
+                            <span class="hidden-xs">${logado.idUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -133,6 +133,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
+                    <form class="box" method="post" action="solicitar">
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Estoque Atual - Unidade ${logado.setor.nomeSetor}</h3>
@@ -140,50 +141,53 @@
                         <!-- /.box-header -->
                         <div class="box-body">
 
-                            <div class="box-tools">
-                                <div class="input-group input-group-lg" style="max-width: 750px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">
+<%--                            <div class="box-tools">--%>
+<%--                                <div class="input-group input-group-lg" style="max-width: 750px;">--%>
+<%--                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">--%>
 
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            </br>
-
+<%--                                    <div class="input-group-btn">--%>
+<%--                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            </br>--%>
+                            <input type="hidden" name="id" value="${logado.idUsuario}" id="idUsuario">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>Nome do Material</th>
                                     <th>Unidade de Medida</th>
                                     <th style="width: 65px">Estoque Atual</th>
-                                    <th style="width: 85px">Ação</th>
+                                    <th style="width: 85px">Quantidade Solicitada</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Porta Agulha Mathieu</td>
-                                    <td>Unitário</td>
-                                    <td><input type="text" class="form-control" value="17" disabled></td>
-                                    <td>
-                                        <div class="input-group">
-                                            <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="99" step="1">
-                                        </div>
-                                    </td>
-                                </tr>
+                                <c:forEach var="estoque" items="${materiais}">
+                                    <tr class = "item-material">
+                                        <td>${estoque.material.nomeMaterial}</td>
+                                        <input name="idMaterial" value="${estoque.material.idMaterial}" type="hidden" class="item-material_id">
+                                        <td>${estoque.material.unidadeMedida}</td>
+                                        <td>
+                                            <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="quantidade" class="form-control input-number quantity-field item-material_quantidade" value="0" min="0" max="10">
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th>Nome do Material</th>
                                     <th>Unidade de Medida</th>
                                     <th>Estoque Atual</th>
-                                    <th>Ação</th>
+                                    <th>Quantidade Solicitada</th>
                                 </tr>
                                 </tfoot>
 
                             </table>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
+                                <button type="submit" class="btn btn-success pull-right" id="botao-solicitar">Solicitar Materiais</button>
                                 <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                             </div>
@@ -191,9 +195,9 @@
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
+                    </form>
                 </div>
                 <!-- /.content-wrapper -->
-
             </div>
         </section>
 
@@ -219,40 +223,39 @@
 <script src="dist/js/adminlte.js"></script>
 <!-- page script -->
 <script>
+    $(function () {
+        //Initialize Select2 Elements
+        //$('.select2').select2()
 
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+        /*$("#botao-solicitar").on('click', function(){
+            let itens = $(".item-material");
 
-        if (!isNaN(currentVal)) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
+            let objeto_materiais = []
+            itens.each(function() {
+                let materialId = $(this).find(".item-material_id").val();
+                let quantidade = $(this).find(".item-material_quantidade").val();
 
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+                objeto_materiais.push({id: Number(materialId), quantidade: Number(quantidade)})
+            });
 
-        if (!isNaN(currentVal) && currentVal > 0) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    $('.input-group').on('click', '.button-plus', function(e) {
-        incrementValue(e);
-    });
-
-    $('.input-group').on('click', '.button-minus', function(e) {
-        decrementValue(e);
-    });
+            console.log(objeto_materiais)
+            let objeto_requisicao = {materiais: objeto_materiais, id: Number($("#idUsuario").val())}
+            console.log(objeto_requisicao)
+            $.ajax({
+                url: 'solicitar',
+                method : 'POST',
+                data : objeto_requisicao,
+                dataType : "JSON",
+                contentType: 'application/json',
+                success : () => {
+                alert("sucesso")
+        },
+            error : (err) => {
+                console.log(err)
+            }
+        })
+        })*/
+    })
 </script>
 </body>
 </html>

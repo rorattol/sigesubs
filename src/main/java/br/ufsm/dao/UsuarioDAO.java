@@ -80,6 +80,7 @@ public class UsuarioDAO {
             rs = pre.executeQuery();
             while (rs.next()) {
                 Usuario u = new Usuario();
+                u.setIdUsuario(rs.getInt("id_usuario"));
                 u.setNomeUsuario(rs.getString("nome_usuario"));
                 u.setLoginUsuario(rs.getString("login_usuario"));
                 u.setSenhaUsuario(rs.getString("senha_usuario"));

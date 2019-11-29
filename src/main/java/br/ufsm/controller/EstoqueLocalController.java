@@ -18,7 +18,7 @@ public class EstoqueLocalController {
 
     @GetMapping("/estoqueUnidade")
     String estoque(@RequestParam("id") int idUnidade , Model model) {
-        model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetor(idUnidade));
+        model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetorAtual(idUnidade));
 
         return "views/estoqueUnidade";
     }

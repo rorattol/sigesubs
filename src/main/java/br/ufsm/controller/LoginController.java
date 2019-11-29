@@ -41,7 +41,7 @@ public class LoginController{
             System.out.println(usuario.getSetor().getIdSetor());
 
             if(usuario.getTipoUsuario().getIdTipoUsuario() == 1){  //usuario comum
-                model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetor(usuario.getSetor().getIdSetor()));
+                model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetorAtual(usuario.getSetor().getIdSetor()));
                 System.out.println("menuUsuario");
                 return "menuUsuario";
             }

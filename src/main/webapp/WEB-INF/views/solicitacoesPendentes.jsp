@@ -153,14 +153,32 @@
             </ol>
         </section>
 
+
+
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
+
+                    <c:if test="${not empty sucesso}">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+                                ${sucesso}
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty erro}">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                                ${erro}
+                        </div>
+                    </c:if>
+
                     <div class="box">
                         <div class="box-header">
                             <div class="col-md-12">
-                                <h3 class="box-title">Unidade {infoSolic.setorSolicitante.nomeSetor}</h3>
+                                <h3 class="box-title">Unidade ${infoSolic.setorSolicitante.nomeSetor}</h3>
                             </div>
                             <div class="pull-right box-tools">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Avaliar Solicitação</button>
@@ -169,16 +187,17 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>{infoSolic.usuarioSolicitante.nomeUsuario}</dd>
+                                        <dd>${infoSolic.usuarioSolicitante.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
-                                        <dd>{infoSolic.dataSolicitacao}</dd>
+                                        <dd>${infoSolic.dataSolicitacao}</dd>
                                         <br/>
                                         <dt>Status</dt>
-                                        <dd>{infoSolic.statusSolicitacao}</dd>
+                                        <dd>${infoSolic.statusSolicitacao}</dd>
                                     </dl>
                                 </div>
                             </div>
+                            <jsp:useBean id="solicitacaoDAO" class="br.ufsm.dao.SolicitacaoDAO"></jsp:useBean>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -186,25 +205,27 @@
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
-                                        <th style="width: 50px">Estoque atual</th>
+<%--                                        <th style="width: 50px">Estoque atual</th>--%>
                                         <th style="width: 70px">Quantidade Pedida</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="pedido" items="${materiais}">
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Win 95+</td>
-                                        <td>
-                                            <input type="text" class="form-control" value="3" disabled>
-                                        </td>
-                                        <td> 4</td>
+                                        <td>${pedido.nomeMaterial}</td>
+                                        <td>${pedido.unidadeMedida}</td>
+<%--                                        <td>--%>
+<%--                                            <input type="text" class="form-control" value="${atual.qtdEstoque}" disabled>--%>
+<%--                                        </td>--%>
+                                        <td>${pedido.quantidade}</td>
                                     </tr>
+                                    </c:forEach>
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
-                                        <th>Estoque atual</th>
+<%--                                        <th>Estoque atual</th>--%>
                                         <th>Quantidade Pedida</th>
                                     </tr>
                                     </tfoot>
@@ -224,7 +245,7 @@
                                     </div>
                                     <form method="post" action="avaliarSolicitacao">
                                         <div class="modal-body">
-                                            <input type="hidden" name="idUsuario">
+                                            <input type="hidden" name="id" value="${infoSolic.id}">
                                             <p>Escolha como deseja avaliar esta solicitação</p>
 
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -303,10 +324,7 @@
 </script>
 <script type="text/javascript">
     $('#modal-default').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var recipient = button.data('whatever')
-        var modal = $(this)
-        modal.find('.modal-body input').val(recipient)
+
     })
 </script>
 </body>

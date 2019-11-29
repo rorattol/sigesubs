@@ -142,73 +142,68 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="box">
+                    <form class="box" method="post" action="transferir">
                         <div class="box-header">
-                            <h3 class="box-title">Materiais Solicitados</h3>
+                            <h3 class="box-title">Materiais</h3>
                         </div>
-                        <form action="#" method="post">
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <!-- /.box-header -->
+                        <div class="box-body">
 
-                                <table id="example2" class="table table-bordered table-hover">
+                            <div class="box-tools">
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group input-group-lg" style="max-width: 750px;">--%>
+<%--                                        <select class="form-control select2" style="width: 100%;">--%>
+<%--                                            <option selected="selected">Alabama</option>--%>
+<%--                                            <option>Alaska</option>--%>
+<%--                                            <option>California</option>--%>
+<%--                                            <option>Delaware</option>--%>
+<%--                                            <option>Tennessee</option>--%>
+<%--                                            <option>Texas</option>--%>
+<%--                                            <option>Washington</option>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div></br>--%>
 
-                                    <thead>
+                            <input type="hidden" name="idSetorDestino" value="${idUnidade}">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
+                                <thead>
+                                <tr>
+                                    <th>Nome Material</th>
+                                    <th>Unidade de Medida</th>
+                                    <th style="width: 65px">Estoque Atual</th>
+                                    <th style="width: 190px">Quantidade a ser adicionada</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="estoque" items="${estoque}">
                                     <tr>
-                                        <th>Nome Material</th>
-                                        <th>Unidade de Medida</th>
-                                        <th style="width: 65px">Estoque Atual</th>
-                                        <th style="width: 190px">Ação</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Win 95+</td>
+                                        <td>${estoque.material.nomeMaterial}</td>
+                                        <input name="idMaterial" value="${estoque.material.idMaterial}" type="hidden">
+                                        <td>${estoque.material.unidadeMedida}</td>
                                         <td>
-                                            <input type="text" class="form-control" value="17" disabled>
+                                            <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
                                         </td>
                                         <td>
-                                            <div class="input-group">
-												  <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-minus" data-field="quantity">
-														  <span class="glyphicon glyphicon-minus"></span>
-													  </button>
-												  </span>
-                                                <input type="number" name="quantity" class="form-control input-number quantity-field" value="1" min="1" max="10" step="1">
-                                                <span class="input-group-btn">
-													  <button type="button" class="btn btn-default btn-number button-plus" data-field="quantity">
-														  <span class="glyphicon glyphicon-plus"></span>
-													  </button>
-												  </span>
-                                            </div>
-
-                                            <!--
-                                                        <div class="input-group">
-                                                          <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                          <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-                                                          <input type="button" value="+" class="button-plus" data-field="quantity">
-                                                        </div>-->
-                                            <!--		https://bootsnipp.com/snippets/dGWP
-                                                        http://jsfiddle.net/polaszk/1oyfxoor/ -->
-
+                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="0" min="0" max="10">
                                         </td>
                                     </tr>
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Nome Material</th>
-                                        <th>Unidade de Medida</th>
-                                        <th>Estoque Atual</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                    </tfoot>
-
-
-                                </table>
-                                <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
-                                <a href="gerenciarSolicitacao" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
-                            </div>
-                        </form>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Nome Material</th>
+                                    <th>Unidade de Medida</th>
+                                    <th>Estoque Atual</th>
+                                    <th>Ações</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
+                            <a href="transferirMaterial" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
+                        </div>
+                    </form>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
@@ -239,44 +234,7 @@
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-
 <!-- page script -->
-<script>
-
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal)) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal) && currentVal > 0) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    $('.input-group').on('click', '.button-plus', function(e) {
-        incrementValue(e);
-    });
-
-    $('.input-group').on('click', '.button-minus', function(e) {
-        decrementValue(e);
-    });
-</script>
 </body>
 </html>
 
