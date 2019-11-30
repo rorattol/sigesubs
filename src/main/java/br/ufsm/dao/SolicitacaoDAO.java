@@ -75,7 +75,7 @@ public class SolicitacaoDAO {
 
         try (Connection conn = new ConectDB_postgres().getConexao()) {
             sql = "SELECT sol.id_solicitacao , sol.observacao, sol.data_solicitacao, sol.status_solicitacao, " +
-                    "s.nome_setor, u.nome_usuario " +
+                    "s.nome_setor, u.nome_usuario, s.cod_setor " +
                     "FROM solicitacao sol, setor s, usuario u " +
                     "WHERE u.cod_setor =  s.cod_setor AND sol.usuario_responsavel = u.id_usuario " +
                     "AND sol.id_solicitacao = ?;";
@@ -86,6 +86,7 @@ public class SolicitacaoDAO {
                 Solicitacao solic = new Solicitacao();
 
                 Setor setor = new Setor();
+                setor.setIdSetor(rs.getInt("cod_setor"));
                 setor.setNomeSetor(rs.getString("nome_setor"));
                 solic.setSetorSolicitante(setor);
                 Usuario usu = new Usuario();
@@ -95,7 +96,6 @@ public class SolicitacaoDAO {
                 solic.setObservacao(rs.getString("observacao"));
                 solic.setDataSolicitacao(rs.getDate("data_solicitacao"));
                 solic.setStatusSolicitacao(rs.getString("status_solicitacao"));
-
                 return solic;
             }
         } catch (SQLException ex) {

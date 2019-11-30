@@ -170,7 +170,7 @@
                                     <c:if test="${historico.statusSolicitacao == 'Aceito'}">
                                         <span class="label label-success">Aceito</span>
                                     </c:if>
-                                    <c:if test="${historico.statusSolicitacao == 'Aceito com Ajustes'}">
+                                    <c:if test="${historico.statusSolicitacao == 'Aceito com Ajuste'}">
                                         <span class="label label-warning">Aceito com Ajustes</span>
                                     </c:if>
                                     </td>

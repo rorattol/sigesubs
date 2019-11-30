@@ -47,7 +47,26 @@ public class TransferirMaterialController {
         new MaterialDAO().movimentar(materiais, idSetorDestino);
         new MaterialDAO().transferir(materiais, idSetorDestino);
 
+        model.addAttribute("sucesso", "Transferencia realizada com sucesso");
 
-        return "views/transferirMaterial";
+        return "menuAdmin";
+    }
+
+    @PostMapping("transferirSolicitacao")
+    String tranferirSol(@RequestParam List<Integer> idMaterial, @RequestParam List<Integer> quantidade,
+                     @RequestParam int idSetorDestino, @RequestParam int idSol, Model model) {
+
+        Map<Integer, Integer> materiais = new HashMap<>();
+        for(int i = 0; i < idMaterial.size(); i++) {
+            if(quantidade.get(i) > 0) {
+                materiais.put(idMaterial.get(i), quantidade.get(i));
+            }
+        }
+        new MaterialDAO().movimentarSolicitacao(materiais, idSetorDestino, idSol);
+        new MaterialDAO().transferirSolicitacao(materiais, idSetorDestino, idSol);
+
+        model.addAttribute("sucesso", "Transferencia realizada com sucesso");
+        model.addAttribute("unidades", new SetorDAO().getSetor());
+        return "menuAdmin";
     }
 }

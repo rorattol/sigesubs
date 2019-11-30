@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,7 +143,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <form class="box" method="post" action="transferir">
+                    <form class="box" method="post" action="transferirSolicitacao">
                         <div class="box-header">
                             <h3 class="box-title">Materiais</h3>
                         </div>
@@ -164,8 +165,8 @@
 <%--                                    </div>--%>
 <%--                                </div>--%>
 <%--                            </div></br>--%>
-
-                            <input type="hidden" name="idSetorDestino" value="${idUnidade}">
+                            <input type="hidden" name="idSol" value="${idSolicitacao}">
+                            <input type="hidden" name="idSetorDestino" value="${idSetor}">
                             <table id="example2" class="table table-bordered table-hover">
                                 <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
                                 <thead>
@@ -177,16 +178,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="estoque" items="${estoque}">
+                                <c:forEach var="material" items="${materiais}">
                                     <tr>
-                                        <td>${estoque.material.nomeMaterial}</td>
-                                        <input name="idMaterial" value="${estoque.material.idMaterial}" type="hidden">
-                                        <td>${estoque.material.unidadeMedida}</td>
+                                        <td>${material.nomeMaterial}</td>
+                                        <input name="idMaterial" value="${material.idMaterial}" type="hidden">
+                                        <td>${material.unidadeMedida}</td>
                                         <td>
-                                            <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
+                                            <input type="text" class="form-control" value="${material.quantidade}" disabled>
                                         </td>
                                         <td>
-                                            <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="0" min="0" max="10">
+                                            <input type="number" name="quantidade" class="form-control input-number quantity-field" value="${material.quantidade}" min="0" max="99">
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -201,7 +202,6 @@
                                 </tfoot>
                             </table>
                             <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
-                            <a href="transferirMaterial" type="button" class="btn btn-danger pull-right" style="margin-right: 5px;">Cancelar</a>
                         </div>
                     </form>
                         <!-- /.box-body -->

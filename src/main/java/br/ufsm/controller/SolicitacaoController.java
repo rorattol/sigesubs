@@ -29,6 +29,7 @@ public class SolicitacaoController {
         model.addAttribute("infoSolic", new SolicitacaoDAO().read(idSolic));
        // model.addAttribute("estoqueAtual", new EstoqueSetorDAO().getEstoqueAtual(idSolic));
         model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(idSolic));
+        model.addAttribute("idSolicitacao", idSolic);
 
         return "views/solicitacoesPendentes";
     }
@@ -40,19 +41,18 @@ public class SolicitacaoController {
     }
 
     @RequestMapping("avaliarSolicitacao")
-    String avaliarSol(@RequestParam("op") String opcao, @RequestParam ("obs") String observacao, @RequestParam ("id") String id, Model model){
+    String avaliarSol(@RequestParam("op") String opcao, @RequestParam ("obs") String observacao,
+                      @RequestParam ("idSol") String idSol, Model model){
 
-
+        Solicitacao sol = new Solicitacao();
+        sol.setId(Integer.valueOf(idSol));
+//        if(observacao.trim().equals("") || observacao == null){
+//            sol.setObservacao("Sem observações");
+//        }else {
+//            sol.setObservacao(observacao);
+//        }
         if(opcao.equals("1")){ //REJEITAR
-
-            Solicitacao sol = new Solicitacao();
-            sol.setId(Integer.valueOf(id));
             sol.setStatusSolicitacao("Negado");
-            if(observacao.trim().equals("") || observacao == null){
-                sol.setObservacao("Sem observações");
-            }else {
-                sol.setObservacao(observacao);
-            }
             boolean resp = new SolicitacaoDAO().udpate(sol);
             if (resp == true){
                 model.addAttribute("sucesso", "Avaliação realizada com sucesso. Você rejeitou a solicitação");
@@ -65,23 +65,20 @@ public class SolicitacaoController {
         }
 
         else if(opcao.equals("2")){ //ACEITAR COM AJUSTE
-            model.addAttribute(observacao);
-            model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(Integer.valueOf(id)));
+            sol.setStatusSolicitacao("Aceito com Ajuste");
+            new SolicitacaoDAO().udpate(sol);
+            model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(Integer.valueOf(idSol)));
+            model.addAttribute("idSolicitacao", idSol);
+
             return "views/ajustarSolicitacao";
         }
 
         else if(opcao.equals("3")){ //ACEITAR
-            Solicitacao sol = new Solicitacao();
-            sol.setId(Integer.parseInt(id));
-            sol.setStatusSolicitacao("Aceito");
-            if(observacao.equals(null)){
-                sol.setObservacao("Sem observações");
-            }else {
-                sol.setObservacao(observacao);
-            }
+//            sol.setStatusSolicitacao("Aceito");
+//            boolean resp = new SolicitacaoDAO().udpate(sol);
+//            if (resp == true){
+if (true){
 
-            boolean resp = new SolicitacaoDAO().udpate(sol);
-            if (resp == true){
                 model.addAttribute("sucesso", "Avaliação realizada com sucesso. Você rejeitou a solicitação");
             }
             else{

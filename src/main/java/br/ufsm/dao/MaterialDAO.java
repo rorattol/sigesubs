@@ -148,7 +148,44 @@ public class MaterialDAO {
         }
     }
 
+    public void movimentarSolicitacao(Map<Integer, Integer> materiais, int idSetorDestino, int idSolicitacao) {
 
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+
+            String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, idSolicitacao);
+            stmt.setInt(2, idSetorDestino);
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idMov = generatedKeys.getInt(1);
+
+                    materiais.forEach((idMaterial, quantidade) -> {
+                        String sql1 = "INSERT INTO material_movimentacao (id_material, quantidade, id_movimentacao) VALUES (?, ?, ?)";
+                        try {
+                            PreparedStatement stmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+                            stmt1.setInt(1, idMaterial);
+                            stmt1.setInt(2, quantidade);
+                            stmt1.setInt(3, idMov);
+
+                            stmt1.executeUpdate();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                    });
+                    conn.commit();
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }
+    }
 
     public void transferir(Map<Integer, Integer> materiais, int idSetorDestino) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
@@ -192,6 +229,49 @@ public class MaterialDAO {
         }
     }
 
+
+    public void transferirSolicitacao(Map<Integer, Integer> materiais, int idSetorDestino, int idSolicitacao) {
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+
+            String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idSolicitacao);
+            stmt.setInt(2, idSetorDestino);
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+
+                if (true) {
+
+
+//                    DO $$ BEGIN
+                    materiais.forEach((idMaterial, quantidade) -> {
+//                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
+                        //String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
+                        String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                        try {
+                            CallableStatement stmt1 = conn.prepareCall(sql1);
+                            stmt1.setInt(1, idSetorDestino);
+                            stmt1.setInt(2, idMaterial);
+                            stmt1.setInt(3, quantidade);
+
+                            stmt1.execute();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                    });
+//
+                    conn.commit();
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }
+    }
 //
 //    CREATE OR REPLACE FUNCTION upsert_setor_material(cod_unidade int, id_mat int, qtd int) RETURNS VOID AS $$
 //    DECLARE

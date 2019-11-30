@@ -245,7 +245,8 @@
                                     </div>
                                     <form method="post" action="avaliarSolicitacao">
                                         <div class="modal-body">
-                                            <input type="hidden" name="id" value="${infoSolic.id}">
+                                            <input type="hidden" name="idSol" value="${infoSolic.id}">
+                                            <input type="hidden" name="idUnidade" value="${infoSolic.setorSolicitante.idSetor}">
                                             <p>Escolha como deseja avaliar esta solicitação</p>
 
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -262,11 +263,10 @@
                                                     <label class="form-check-label" for="exampleRadios3">Aceitar</label>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label>Observações</label>
-                                                <textarea class="form-control" rows="3" name="obs" placeholder="Digite observações sobre essa Solicitação"></textarea>
-                                            </div>
+<%--                                            <div class="form-group">--%>
+<%--                                                <label>Observações</label>--%>
+<%--                                                <textarea class="form-control" rows="3" name="obs" placeholder="Digite observações sobre essa Solicitação"></textarea>--%>
+<%--                                            </div>--%>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
