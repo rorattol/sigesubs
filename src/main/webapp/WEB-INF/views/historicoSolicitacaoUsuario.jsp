@@ -100,16 +100,16 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuUsuario"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
+                    <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
                     <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="#"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -161,7 +161,7 @@
                                             <c:if test="${historico.statusSolicitacao == 'Aceito'}">
                                                 <span class="label label-success">Aceito</span>
                                             </c:if>
-                                            <c:if test="${historico.statusSolicitacao == 'Aceito com Ajustes'}">
+                                            <c:if test="${historico.statusSolicitacao == 'Aceito com Ajuste'}">
                                                 <span class="label label-warning">Aceito com Ajustes</span>
                                             </c:if>
                                         </td>
@@ -208,8 +208,7 @@
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+
 <!-- page script -->
 <script>
     $(function () {

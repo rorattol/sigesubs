@@ -34,9 +34,9 @@ public class SolicitacaoController {
         return "views/solicitacoesPendentes";
     }
 
-    @RequestMapping("fazerSolicitacao")
-    String realizaSol(Model model){
-        model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetor(1));
+    @GetMapping("fazerSolicitacao")
+    String realizaSol(Model model, @RequestParam ("id") int id){
+        model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetor(id));
         return "views/fazerSolicitacao";
     }
 
@@ -97,7 +97,8 @@ if (true){
 
 
     @PostMapping("solicitar")
-    String solictacao(@RequestParam List<Integer> idMaterial, @RequestParam List<Integer> quantidade, @RequestParam ("id") int idOrigem, Model model){
+    String solictacao(@RequestParam List<Integer> idMaterial, @RequestParam List<Integer> quantidade,
+                      @RequestParam ("id") int idOrigem, Model model){
 
         Map<Integer, Integer> materiais = new HashMap<>();
         for(int i = 0; i < idMaterial.size(); i++) {

@@ -100,16 +100,16 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuUsuario"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
+                    <a href="#"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
                     <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -124,7 +124,7 @@
                 Dar Baixa Materiais
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Dar Baixa em Materiais</li>
 
             </ol>
@@ -134,24 +134,15 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    <form class="box" method="post" action="">
+                    <form class="box" method="post" action="materiaisUsados">
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">Estoque Atual - Unidade ${logado.setor.nomeSetor}</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <%--                            <div class="box-tools">--%>
-                                <%--                                <div class="input-group input-group-lg" style="max-width: 750px;">--%>
-                                <%--                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Adicionar Materiais">--%>
 
-                                <%--                                    <div class="input-group-btn">--%>
-                                <%--                                        <button type="submit" class="btn btn-default"><i class="fa fa-plus"></i></button>--%>
-                                <%--                                    </div>--%>
-                                <%--                                </div>--%>
-                                <%--                            </div>--%>
-                                <%--                            </br>--%>
-
+                                <input type="hidden" name="idSetor" value="${lgoado.setor.idSetor}" id="idSetor">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -171,7 +162,7 @@
                                                 <input type="text" class="form-control" value="${estoque.qtdEstoque}" disabled>
                                             </td>
                                             <td>
-                                                <input type="number" name="quantity[]" class="form-control input-number quantity-field" value="0" min="0" max="10">
+                                                <input type="number" name="quantidade" class="form-control input-number quantity-field" value="0" min="0" max="${estoque.qtdEstoque}">
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -188,7 +179,7 @@
                                 </table>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
-                                    <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
+                                    <a href="menuUsuario?id=${logado.setor.idSetor}" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                                 </div>
                             </div>

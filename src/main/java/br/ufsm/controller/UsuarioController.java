@@ -1,5 +1,6 @@
 package br.ufsm.controller;
 
+import br.ufsm.dao.EstoqueSetorDAO;
 import br.ufsm.dao.SetorDAO;
 import br.ufsm.dao.UsuarioDAO;
 import br.ufsm.model.Setor;
@@ -28,10 +29,9 @@ public class UsuarioController{
         return "menuAdmin";
     }
 
-    @PostMapping("menuUsuario")
-    String menuU(){
-        //@RequestParam ("id") int id, Model model
-       // model.addAttribute("estoque", new SetorDAO().getSetor());
+    @GetMapping("menuUsuario")
+    String menuU(@RequestParam ("id") int id, Model model){
+        model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetorAtual(id));
         return "menuUsuario";
     }
 
@@ -58,7 +58,6 @@ public class UsuarioController{
 
         return "views/perfilVisualizar";
     }
-
 
     @PostMapping("updateUsuario")
     String atualizaUsuario(Usuario usuario, int idSetor, int tipoU, Model model){

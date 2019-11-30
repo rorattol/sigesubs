@@ -221,9 +221,38 @@ public class MaterialDAO {
 //
                     conn.commit();
                 } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
+                    throw new SQLException("Erro");
                 }
             }
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void darBaixa(Map<Integer, Integer> materiais, int idSetor) {
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+                if (true) {
+                    materiais.forEach((idMaterial, quantidade) -> {
+//                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
+//                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
+                        String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                        try {
+                            CallableStatement stmt1 = conn.prepareCall(sql1);
+                            stmt1.setInt(1, idSetor);
+                            stmt1.setInt(2, idMaterial);
+                            stmt1.setInt(3, quantidade);
+
+                            stmt1.execute();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                    });
+                    conn.commit();
+                } else {
+                    throw new SQLException("Erro.");
+                }
         } catch ( SQLException ex ) {
             ex.printStackTrace();
         }
@@ -265,7 +294,7 @@ public class MaterialDAO {
 //
                     conn.commit();
                 } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
+                    throw new SQLException("Erro");
                 }
             }
         } catch ( SQLException ex ) {

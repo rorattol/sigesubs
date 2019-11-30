@@ -100,16 +100,16 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuUsuario"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
+                    <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
                     <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -124,8 +124,8 @@
                 Histórico de Solicitações
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="historicoUsuario">Historico de Solicitações</a></li>
+                <li><a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="historicoUsuario?id=${logado.setor.idSetor}">Historico de Solicitações</a></li>
                 <li class="active">Detalhes Solicitacão</li>
             </ol>
         </section>
@@ -143,25 +143,13 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Nome Solicitante</dt>
-                                        <dd>Luiz Pedro</dd>
+                                        <dd>${historico.usuarioSolicitante.nomeUsuario}</dd>
                                         <br/>
                                         <dt>Data da Solicitação</dt>
-                                        <dd>12/12/2012</dd>
+                                        <dd>${historico.dataSolicitacao}</dd>
                                         <br/>
                                         <dt>Status</dt>
-                                        <dd>Negado</dd>
-
-                                    </dl>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="box-body">
-                                    <dl>
-                                        <dt>Nome do Avaliador</dt>
-                                        <dd>Maria Tereza</dd>
-                                        <br/>
-                                        <dt>Data da Avaliação</dt>
-                                        <dd>21/12/2012</dd>
+                                        <dd>${historico.statusSolicitacao}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -169,7 +157,7 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Observações</dt>
-                                        <dd>Muitos itens solicitados. Grande parte deeles desnecessários</dd>
+                                        <dd>${historico.statusSolicitacao}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -181,23 +169,22 @@
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th style="width: 70px">Quantidade Pedida</th>
-                                        <th style="width: 70px">Quantidade Recebida</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Win 95+</td>
-                                        <td>4</td>
-                                        <td>0</td>
-                                    </tr>
+                                    <c:forEach var="pedido" items="${materiais}">
+                                        <tr>
+                                            <td>${pedido.nomeMaterial}</td>
+                                            <td>${pedido.unidadeMedida}</td>
+                                            <td>${pedido.quantidade}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>Nome Material</th>
                                         <th>Unidade de Medida</th>
                                         <th>Quantidade Pedida</th>
-                                        <th>Quantidade Recebida</th>
                                     </tr>
                                     </tfoot>
                                 </table>

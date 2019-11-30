@@ -99,16 +99,16 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuUsuario"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="#"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
+                    <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
                     <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -131,6 +131,22 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
+
+                    <c:if test="${not empty sucesso}">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+                                ${sucesso}
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty erro}">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                                ${erro}
+                        </div>
+                    </c:if>
+
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Estoque da unidade ${logado.setor.nomeSetor}</h3>

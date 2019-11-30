@@ -99,16 +99,16 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="menuUsuario"><i class="fa fa-th"></i> <span>Home</span></a>
+                    <a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
-                    <a href="darBaixa"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
+                    <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
-                    <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
+                    <a href="#"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
-                    <a href="historicoUsuario"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
+                    <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
         </section>
@@ -188,7 +188,7 @@
                             </table>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-success pull-right" id="botao-solicitar">Solicitar Materiais</button>
-                                <a href="menuUsuario" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
+                                <a href="menuUsuario?id=${logado.setor.idSetor}" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                             </div>
                         </div>

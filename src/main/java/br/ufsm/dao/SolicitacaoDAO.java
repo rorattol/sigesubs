@@ -18,7 +18,7 @@ public class SolicitacaoDAO {
     ResultSet rs;
     boolean retorno = false;
 
-    public boolean udpate(Solicitacao sol){
+    public boolean udpate(Solicitacao sol) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
             sql = "UPDATE solicitacao SET observacao = ?, status_solicitacao = ? " +
@@ -147,14 +147,10 @@ public class SolicitacaoDAO {
         ArrayList<Solicitacao> solicitacoes = new ArrayList<>();
 
         try (Connection conn = new ConectDB_postgres().getConexao()) {
-
-            Statement stmt = conn.createStatement();
-            rs = stmt.executeQuery(
-                    "SELECT sol.id_solicitacao, sol.status_solicitacao, " +
-                            "s.nome_setor, u.id_usuario, u.nome_usuario " +
-                            "FROM solicitacao sol, setor s, usuario u " +
-                            "WHERE u.cod_setor =  s.cod_setor AND sol.usuario_responsavel = u.id_usuario " +
-                            "AND sol.status_solicitacao != 'pendente'AND s.cod_setor = ?;");
+            sql = "SELECT sol.id_solicitacao, sol.status_solicitacao, s.cod_setor, s.nome_setor, " +
+                    "sol.data_solicitacao, u.id_usuario, u.nome_usuario FROM solicitacao sol, setor s, usuario u " +
+                    "WHERE u.cod_setor =  s.cod_setor AND sol.usuario_responsavel = u.id_usuario " +
+                    "AND sol.status_solicitacao != 'pendente' AND s.cod_setor = ?;";
             pre = conn.prepareStatement(sql);
             pre.setInt(1, id);
             rs = pre.executeQuery();
@@ -170,6 +166,7 @@ public class SolicitacaoDAO {
                 usu.setIdUsuario(rs.getInt("id_usuario"));
                 usu.setNomeUsuario(rs.getString("nome_usuario"));
                 solic.setUsuarioSolicitante(usu);
+                solic.setDataSolicitacao(rs.getDate("data_solicitacao"));
                 solic.setId(rs.getInt("id_solicitacao"));
                 solic.setStatusSolicitacao(rs.getString("status_solicitacao"));
 
@@ -190,11 +187,11 @@ public class SolicitacaoDAO {
 
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(
-                "SELECT sol.id_solicitacao, sol.data_solicitacao, sol.observacao, sol.status_solicitacao, s.cod_setor, " +
-                      "s.nome_setor, u.id_usuario, u.nome_usuario " +
-                       "FROM solicitacao sol, setor s, usuario u " +
-                        "WHERE u.cod_setor =  s.cod_setor AND sol.usuario_responsavel = u.id_usuario " +
-                        "AND sol.status_solicitacao = 'pendente';");
+                    "SELECT sol.id_solicitacao, sol.data_solicitacao, sol.observacao, sol.status_solicitacao, s.cod_setor, " +
+                            "s.nome_setor, u.id_usuario, u.nome_usuario " +
+                            "FROM solicitacao sol, setor s, usuario u " +
+                            "WHERE u.cod_setor =  s.cod_setor AND sol.usuario_responsavel = u.id_usuario " +
+                            "AND sol.status_solicitacao = 'pendente';");
 
             while (rs.next()) {
                 Solicitacao solic = new Solicitacao();
@@ -260,7 +257,6 @@ public class SolicitacaoDAO {
 
         return solicitacoes;
     }
-
 
 
     public void solicitarMaterial(Map<Integer, Integer> materiais, int idUsuarioOrigem) {
