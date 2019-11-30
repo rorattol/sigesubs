@@ -45,7 +45,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">UBS</span>
             <!-- logo for regular state and mobile devices -->
@@ -64,7 +64,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="../../dist/img/user2-160x160.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">${logado.idUsuario}</span>
+                            <span class="hidden-xs">${logado.nomeUsuario}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -104,7 +104,7 @@
                 <li>
                     <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
@@ -123,7 +123,7 @@
                 Solicitar Materiais
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Solicitar Materiais</li>
 
             </ol>

@@ -1,11 +1,14 @@
 package br.ufsm.controller;
 
 import br.ufsm.dao.EstoqueSetorDAO;
+import br.ufsm.dao.LoginDAO;
 import br.ufsm.dao.SetorDAO;
 import br.ufsm.dao.UsuarioDAO;
 import br.ufsm.model.Setor;
 import br.ufsm.model.TipoUsuario;
 import br.ufsm.model.Usuario;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioController{
 
     @PostMapping("/emailRecuperacao")
-    String recuperacao(String email, Model model){
-        System.out.println(email);
+    String recuperacao(String emailRementente, Model model){
+
+
+        System.out.println(emailRementente);
         model.addAttribute("sucesso", "Sua senha foi enviada para seu email.");
         return "index";
     }
@@ -120,6 +125,32 @@ public class UsuarioController{
         } else {
             model.addAttribute("erro", "Não foi possivel cadastrar.");
             return "views/usuarioGerenciar";
+        }
+    }
+
+    @PostMapping("atualizarSenha")
+    String atualizasenha(Model model, @RequestParam String senhaNova, @RequestParam String senhaAntiga, Usuario usu){
+
+        boolean retorno = false;
+        boolean resp = new LoginDAO().autenticarUsuario(usu.getLoginUsuario(), senhaAntiga);
+
+        if(resp == false){
+            model.addAttribute("erro", "Não foi possivel atualizar senha.");
+            return "views/perfilVisualizar";
+        }
+        else {
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(usu.getIdUsuario());
+            usuario.setSenhaUsuario(senhaNova);
+            retorno = new UsuarioDAO().updateSenha(usuario);
+        }
+
+        if (retorno == true) {
+            model.addAttribute("sucesso", "Senha Atualizado com sucesso.");
+            return "views/perfilVisualizar";
+        } else {
+            model.addAttribute("erro", "Não foi possivel atualizar.");
+            return "views/perfilVisualizar";
         }
     }
 }

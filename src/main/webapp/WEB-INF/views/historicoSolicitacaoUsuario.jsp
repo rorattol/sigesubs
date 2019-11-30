@@ -45,7 +45,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">UBS</span>
             <!-- logo for regular state and mobile devices -->
@@ -106,9 +106,9 @@
                     <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
-                    <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
+                    <a href="fazerSolicitacao?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
                 </li>
             </ul>
@@ -124,7 +124,7 @@
                 Histórico de Solicitações
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuUsuario"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Histórico de Solicitações</li>
 
             </ol>

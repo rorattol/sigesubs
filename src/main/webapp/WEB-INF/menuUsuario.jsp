@@ -45,7 +45,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">UBS</span>
             <!-- logo for regular state and mobile devices -->
@@ -98,14 +98,14 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa fa-th"></i> <span>Home</span></a>
                 </li>
                 <li>
                     <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Dar Baixa no Estoque</span></a>
                 </li>
                 <li>
-                    <a href="fazerSolicitacao"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
+                    <a href="fazerSolicitacao?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Solicitar Materiais</span></a>
                 </li>
                 <li>
                     <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-th"></i> <span>Histórico de Solicitação</span></a>
@@ -151,14 +151,7 @@
                         <div class="box-header">
                             <h3 class="box-title">Estoque da unidade ${logado.setor.nomeSetor}</h3>
                             <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
 
-                                    <%--CAMPO DE BUSCA--%>
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 

@@ -7,13 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | User Profile</title>
+    <title>Gerenciador UBS | Perfil Usuario</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -43,11 +42,11 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="../../index2.html" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini">UBS</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg">Gerenciador <b>UBS</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -98,24 +97,40 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MENU</li>
-                <li>
-                    <a href="menuAdmin"><i class="fa fa-th"></i> <span>Home</span></a>
-                </li>
-                <li>
-                    <a href="gerenciarUsuario"><i class="fa fa-th"></i> <span>Gerenciar Usuário</span></a>
-                </li>
-                <li>
-                    <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
-                </li>
-                <li>
-                    <a href="transferirMaterial"><i class="fa fa-th"></i> <span>Transferir Materiais</span></a>
-                </li>
-                <li>
-                    <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
-                </li>
-                <li>
-                    <a href="historicoAdmin"><i class="fa fa-th"></i> <span>Histórico de Solicitações</span></a>
-                </li>
+                <c:if test="${logado.tipoUsuario.idTipoUsuario == 2}">
+                    <li>
+                        <a href="menuAdmin"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
+                    </li>
+                    <li>
+                        <a href="gerenciarUsuario"><i class="fa fa-fw fa-users"></i> <span>Gerenciar Usuário</span></a>
+                    </li>
+                    <li>
+                        <a href="gerenciarMaterial"><i class="fa fa-th"></i> <span>Gerenciar Material</span></a>
+                    </li>
+                    <li>
+                        <a href="transferirMaterial"><i class="fa fa-fw fa-exchange"></i> <span>Transferir Materiais</span></a>
+                    </li>
+                    <li>
+                        <a href="gerenciarSolicitacao"><i class="fa fa-th"></i> <span>Gerenciar Solicitações</span></a>
+                    </li>
+                    <li>
+                        <a href="historicoAdmin"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitações</span></a>
+                    </li>
+                </c:if>
+                <c:if test="${logado.tipoUsuario.idTipoUsuario == 1}">
+                    <li>
+                        <a href="menuUsuario?id=${logado.setor.idSetor}"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
+                    </li>
+                    <li>
+                        <a href="darBaixa?id=${logado.setor.idSetor}"><i class="fa fa-fw fa-minus-square"></i> <span>Dar Baixa no Estoque</span></a>
+                    </li>
+                    <li>
+                        <a href="fazerSolicitacao?id${logado.setor.idSetor}"><i class="fa fa-fw fa-plus-square"></i> <span>Solicitar Materiais</span></a>
+                    </li>
+                    <li>
+                        <a href="historicoUsuario?id=${logado.setor.idSetor}"><i class="fa fa-fw fa-history"></i> <span>Histórico de Solicitação</span></a>
+                    </li>
+                </c:if>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -129,29 +144,31 @@
                 Perfil Usuário
             </h1>
             <ol class="breadcrumb">
-                <li><a href="menuAdmin"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Perfil Usuário</li>
             </ol>
         </section>
 
-        <c:if test="${not empty sucesso}">
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Sucesso</h4>
-                    ${sucesso}
-            </div>
-        </c:if>
-        <c:if test="${not empty erro}">
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                    ${erro}
-            </div>
-        </c:if>
+
 
         <!-- Main content -->
         <section class="content">
 
+
+            <c:if test="${not empty sucesso}">
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-check"></i> Sucesso</h4>
+                        ${sucesso}
+                </div>
+            </c:if>
+            <c:if test="${not empty erro}">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                        ${erro}
+                </div>
+            </c:if>
             <div class="row">
                 <div class="col-md-3">
 
@@ -168,7 +185,6 @@
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
-
 
                 </div>
                 <!-- /.col -->
@@ -220,15 +236,18 @@
                                     <span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title">Atualizar Senha</h4>
                             </div>
-                            <form method="post" action="#">
+                            <form method="post" action="atualizarSenha">
+
+                                <input type="hidden" value="${logado.idUsuario}" name="idUsuario">
+                                <input type="hidden" value="${logado.loginUsuario}" name="loginUsuario">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="inputSenha">Senha Atual</label>
-                                        <input type="password" class="form-control" id="inputSenha" name="senha">
+                                        <label for="senhaAntiga">Senha Atual</label>
+                                        <input type="password" class="form-control" id="senhaAntiga" name="senhaAntiga">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputSenhaNova">Digite sua nova senha</label>
-                                        <input type="password" class="form-control" id="inputSenhaNova" name="senhaUsuario">
+                                        <label for="senhaNova">Digite sua nova senha</label>
+                                        <input type="password" class="form-control" id="senhaNova" name="senhaNova">
                                     </div>
                                 </div>
                                 <div class="modal-footer">

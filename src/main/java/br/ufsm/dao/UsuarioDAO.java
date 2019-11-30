@@ -121,17 +121,13 @@ public class UsuarioDAO {
         return retorno;
     }
 
-    public boolean updateComSenha(Usuario usuario) {
+    public boolean updateSenha(Usuario usuario) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
-            sql = "UPDATE usuario SET nome_usuario = ?, login_usuario = ?, senha_usuario = ?, situacao_usuario = ?, id_tipousuario = ?, cod_setor = ? WHERE id_usuario = ?;";
+            sql = "UPDATE usuario SET senha_usuario = ? WHERE id_usuario = ?;";
             pre = conn.prepareStatement(sql);
-            pre.setString(1, usuario.getNomeUsuario());
-            pre.setString(2, usuario.getLoginUsuario());
-            pre.setString(3, usuario.getSenhaUsuario());
-            pre.setBoolean(4, true);
-            pre.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
-            pre.setInt(6, usuario.getSetor().getIdSetor());
+            pre.setString(1, usuario.getSenhaUsuario());
+            pre.setInt(2, usuario.getIdUsuario());
             if (pre.executeUpdate() > 0) {
                 retorno = true;
             }

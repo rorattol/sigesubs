@@ -87,7 +87,7 @@
                 <!-- /.col -->
             </div>
         </form>
-        <a href="recuperarSenha">Esqueci minha senha</a><br>
+<%--        <a href="recuperarSenha">Esqueci minha senha</a><br>--%>
     </div>
     <!-- /.login-box-body -->
 </div>
