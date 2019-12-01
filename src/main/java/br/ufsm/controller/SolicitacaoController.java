@@ -117,6 +117,6 @@ if (true){
             model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente.");
         }
         model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetorAtual(idOrigem));
-        return "views/fazerSolicitacao";
+        return "menuUsuario";
     }
 }
