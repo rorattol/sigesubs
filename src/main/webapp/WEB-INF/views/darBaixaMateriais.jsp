@@ -142,7 +142,7 @@
                             <!-- /.box-header -->
                             <div class="box-body">
 
-                                <input type="hidden" name="idSetor" value="${lgoado.setor.idSetor}" id="idSetor">
+                                <input type="hidden" name="idSetor" value="${logado.setor.idSetor}" id="idSetor">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -178,7 +178,7 @@
 
                                 </table>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-success pull-right">Solicitar Materiais</button>
+                                    <button type="submit" class="btn btn-success pull-right">Dar Baixa</button>
                                     <a href="menuUsuario?id=${logado.setor.idSetor}" type="button" class="btn btn-default pull-right" style="margin-right: 5px;">Cancelar</a>
 
                                 </div>
