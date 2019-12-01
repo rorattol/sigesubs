@@ -1,9 +1,9 @@
 package br.ufsm.controller;
 
 import br.ufsm.dao.EstoqueSetorDAO;
+import br.ufsm.dao.MaterialDAO;
 import br.ufsm.dao.SolicitacaoDAO;
 import br.ufsm.model.Solicitacao;
-import br.ufsm.model.util.MaterialQuantidade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +25,8 @@ public class SolicitacaoController {
     }
 
     @GetMapping("detalhesSolicitacao")
-    String detalhesSol(@RequestParam("id") int idSolic , Model model) {
+    String detalhesSol(@RequestParam("id") int idSolic, Model model) {
         model.addAttribute("infoSolic", new SolicitacaoDAO().read(idSolic));
-       // model.addAttribute("estoqueAtual", new EstoqueSetorDAO().getEstoqueAtual(idSolic));
         model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(idSolic));
         model.addAttribute("idSolicitacao", idSolic);
 
@@ -35,60 +34,62 @@ public class SolicitacaoController {
     }
 
     @GetMapping("fazerSolicitacao")
-    String realizaSol(Model model, @RequestParam ("id") int id){
+    String realizaSol(Model model, @RequestParam("id") int id) {
         model.addAttribute("materiais", new EstoqueSetorDAO().getEstoqueSetor(id));
         return "views/fazerSolicitacao";
     }
 
     @RequestMapping("avaliarSolicitacao")
-    String avaliarSol(@RequestParam("op") String opcao, @RequestParam ("obs") String observacao,
-                      @RequestParam ("idSol") String idSol, Model model){
+    String avaliarSol(@RequestParam("op") String opcao, @RequestParam("obs") String observacao,
+                      @RequestParam String idSol, @RequestParam("idUnidade") int idSetor, Model model) {
 
         Solicitacao sol = new Solicitacao();
         sol.setId(Integer.valueOf(idSol));
-//        if(observacao.trim().equals("") || observacao == null){
-//            sol.setObservacao("Sem observações");
-//        }else {
-//            sol.setObservacao(observacao);
-//        }
-        if(opcao.equals("1")){ //REJEITAR
+        if (observacao.trim().equals("") || observacao == null) {
+            sol.setObservacao("Sem observações");
+        } else {
+            sol.setObservacao(observacao);
+        }
+
+        if (opcao.equals("1")) { //REJEITAR
             sol.setStatusSolicitacao("Negado");
             boolean resp = new SolicitacaoDAO().udpate(sol);
-            if (resp == true){
+            if (resp == true) {
                 model.addAttribute("sucesso", "Avaliação realizada com sucesso. Você rejeitou a solicitação");
-            }
-            else{
+            } else {
                 model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente");
             }
             model.addAttribute("solicitacoes", new SolicitacaoDAO().getSolicitacoesTodas());
             return "views/gerenciarSolicitacao";
         }
 
-        else if(opcao.equals("2")){ //ACEITAR COM AJUSTE
+        else if (opcao.equals("2")) { //ACEITAR COM AJUSTE
             sol.setStatusSolicitacao("Aceito com Ajuste");
             new SolicitacaoDAO().udpate(sol);
-            model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(Integer.valueOf(idSol)));
-            model.addAttribute("idSolicitacao", idSol);
+            boolean resp = new SolicitacaoDAO().udpate(sol);
+            if (resp == true) {
+                model.addAttribute("materiais", new SolicitacaoDAO().getMateriaisSolicitacao(Integer.valueOf(idSol)));
+                model.addAttribute("idSolicitacao", idSol);
+                model.addAttribute("idSetor", idSetor);
+                return "views/ajustarSolicitacao";
+            } else {
+                model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente");
+                return "views/gerenciarSolicitacao";
+            }
 
-            return "views/ajustarSolicitacao";
-        }
-
-        else if(opcao.equals("3")){ //ACEITAR
-//            sol.setStatusSolicitacao("Aceito");
-//            boolean resp = new SolicitacaoDAO().udpate(sol);
-//            if (resp == true){
-if (true){
+        } else if (opcao.equals("3")) { //ACEITAR
+            sol.setStatusSolicitacao("Aceito");
+            boolean resp = new SolicitacaoDAO().udpate(sol);
+            boolean query = new MaterialDAO().transferirSolicitacao(Integer.valueOf(idSol), idSetor);
+            if (resp == true || query == true) {
 
                 model.addAttribute("sucesso", "Avaliação realizada com sucesso. Você rejeitou a solicitação");
-            }
-            else{
+            } else {
                 model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente");
             }
             model.addAttribute("solicitacoes", new SolicitacaoDAO().getSolicitacoesTodas());
             return "views/gerenciarSolicitacao";
-        }
-
-        else{
+        } else {
             model.addAttribute("solicitacoes", new SolicitacaoDAO().getSolicitacoesTodas());
             model.addAttribute("erro", "Erro ao realizar solicitação. Tente novamente.");
             return "views/gerenciarSolicitacao";
@@ -98,11 +99,11 @@ if (true){
 
     @PostMapping("solicitar")
     String solictacao(@RequestParam List<Integer> idMaterial, @RequestParam List<Integer> quantidade,
-                      @RequestParam ("id") int idOrigem, Model model){
+                      @RequestParam("id") int idOrigem, Model model) {
 
         Map<Integer, Integer> materiais = new HashMap<>();
-        for(int i = 0; i < idMaterial.size(); i++) {
-            if(quantidade.get(i) > 0) {
+        for (int i = 0; i < idMaterial.size(); i++) {
+            if (quantidade.get(i) > 0) {
                 materiais.put(idMaterial.get(i), quantidade.get(i));
             }
         }
@@ -110,10 +111,9 @@ if (true){
         new SolicitacaoDAO().solicitarMaterial(materiais, idOrigem);
 
         boolean resp = true;
-        if (resp == true){
+        if (resp == true) {
             model.addAttribute("sucesso", "Solicitação enviada para avaliação.");
-        }
-        else{
+        } else {
             model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente.");
         }
         model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetorAtual(idOrigem));
