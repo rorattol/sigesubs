@@ -263,10 +263,10 @@
                                                     <label class="form-check-label" for="exampleRadios3">Aceitar</label>
                                                 </div>
                                             </div>
-<%--                                            <div class="form-group">--%>
-<%--                                                <label>Observações</label>--%>
-<%--                                                <textarea class="form-control" rows="3" name="obs" placeholder="Digite observações sobre essa Solicitação"></textarea>--%>
-<%--                                            </div>--%>
+                                            <div class="form-group">
+                                                <label>Observações</label>
+                                                <textarea class="form-control" rows="3" name="obs" placeholder="Digite observações sobre essa Solicitação"></textarea>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>

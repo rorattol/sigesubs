@@ -149,68 +149,56 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-
                             <div class="box-tools">
-<%--                                <div class="form-group">--%>
-<%--                                    <div class="input-group input-group-lg" style="max-width: 750px;">--%>
-<%--                                        <select class="form-control select2" style="width: 100%;">--%>
-<%--                                            <option selected="selected">Alabama</option>--%>
-<%--                                            <option>Alaska</option>--%>
-<%--                                            <option>California</option>--%>
-<%--                                            <option>Delaware</option>--%>
-<%--                                            <option>Tennessee</option>--%>
-<%--                                            <option>Texas</option>--%>
-<%--                                            <option>Washington</option>--%>
-<%--                                        </select>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div></br>--%>
-                            <input type="hidden" name="idSol" value="${idSolicitacao}">
-                            <input type="hidden" name="idSetorDestino" value="${idSetor}">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
-                                <thead>
-                                <tr>
-                                    <th>Nome Material</th>
-                                    <th>Unidade de Medida</th>
-                                    <th style="width: 65px">Estoque Atual</th>
-                                    <th style="width: 190px">Quantidade a ser adicionada</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="material" items="${materiais}">
+                                <input type="hidden" name="idSol" value="${idSolicitacao}">
+                                <input type="hidden" name="idSetorDestino" value="${idSetor}">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <jsp:useBean id="estoqueSetorDAO" class="br.ufsm.dao.EstoqueSetorDAO"></jsp:useBean>
+                                    <thead>
                                     <tr>
-                                        <td>${material.nomeMaterial}</td>
-                                        <input name="idMaterial" value="${material.idMaterial}" type="hidden">
-                                        <td>${material.unidadeMedida}</td>
-                                        <td>
-                                            <input type="text" class="form-control" value="${material.quantidade}" disabled>
-                                        </td>
-                                        <td>
-                                            <input type="number" name="quantidade" class="form-control input-number quantity-field" value="${material.quantidade}" min="0" max="99">
-                                        </td>
+                                        <th>Nome Material</th>
+                                        <th>Unidade de Medida</th>
+                                        <th style="width: 65px">Estoque Atual</th>
+                                        <th style="width: 190px">Quantidade a ser adicionada</th>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Nome Material</th>
-                                    <th>Unidade de Medida</th>
-                                    <th>Estoque Atual</th>
-                                    <th>Ações</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                            <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="material" items="${materiais}">
+                                        <tr>
+                                            <td>${material.nomeMaterial}</td>
+                                            <input name="idMaterial" value="${material.idMaterial}" type="hidden">
+                                            <td>${material.unidadeMedida}</td>
+                                            <td>
+                                                <input type="text" class="form-control" value="${material.quantidade}"
+                                                       disabled>
+                                            </td>
+                                            <td>
+                                                <input type="number" name="quantidade"
+                                                       class="form-control input-number quantity-field"
+                                                       value="${material.quantidade}" min="0" max="99">
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Nome Material</th>
+                                        <th>Unidade de Medida</th>
+                                        <th>Estoque Atual</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                                <button type="submit" class="btn btn-success pull-right">Transferir Materiais</button>
+                            </div>
                         </div>
                     </form>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.content-wrapper -->
+                <!-- /.box -->
             </div>
         </section>
+        <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
 

@@ -4,11 +4,9 @@ import br.ufsm.model.Material;
 import br.ufsm.model.Setor;
 import br.ufsm.model.Solicitacao;
 import br.ufsm.model.Usuario;
-import br.ufsm.model.util.MaterialQuantidade;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class SolicitacaoDAO {

@@ -1,6 +1,7 @@
 package br.ufsm.dao;
 
 import br.ufsm.model.Material;
+import br.ufsm.model.Solicitacao;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import org.apache.jasper.util.FastRemovalDequeue;
 
@@ -258,10 +259,28 @@ public class MaterialDAO {
         }
     }
 
+    public boolean transferirSolicitacao(int idSolicitacao, int idSetorDestino){
+        ArrayList<Material> materiais = new ArrayList<>();
 
-    public void transferirSolicitacao(Map<Integer, Integer> materiais, int idSetorDestino, int idSolicitacao) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
             conn.setAutoCommit(false);
+
+            sql = "SELECT m.id_material, ms.quantidade " +
+                    "FROM material_solicitacao ms, material m " +
+                    "WHERE ms.id_material = m.id_material " +
+                    "AND id_solicitacao = ?";
+            pre = conn.prepareStatement(sql);
+            pre.setInt(1, idSolicitacao);
+            rs = pre.executeQuery();
+
+            Solicitacao sol = new Solicitacao();
+            while (rs.next()) {
+                Material mat = new Material();
+                mat.setIdMaterial(rs.getInt("id_material"));
+                mat.setQuantidade(rs.getInt("quantidade"));
+                sol.adicionarMaterial(mat);
+                materiais.add(mat);
+            }
 
             String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -269,33 +288,55 @@ public class MaterialDAO {
             stmt.setInt(2, idSetorDestino);
             stmt.executeUpdate();
 
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-
-                if (true) {
-
-
-//                    DO $$ BEGIN
-                    materiais.forEach((idMaterial, quantidade) -> {
-//                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
-                        //String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
-                        String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
-                        try {
-                            CallableStatement stmt1 = conn.prepareCall(sql1);
-                            stmt1.setInt(1, idSetorDestino);
-                            stmt1.setInt(2, idMaterial);
-                            stmt1.setInt(3, quantidade);
-
-                            stmt1.execute();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                            return;
-                        }
-                    });
+//            materiais.forEach((idMaterial, quantidade) -> {
+////                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
+////                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
+//                String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+//                try {
+//                    CallableStatement stmt1 = conn.prepareCall(sql1);
+//                    stmt1.setInt(1, idSetorDestino);
+////                    stmt1.setInt(2, materiais.get(idMaterial));
+////                    stmt1.setInt(3, quantidade);
 //
-                    conn.commit();
-                } else {
-                    throw new SQLException("Erro");
-                }
+//                    stmt1.execute();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                    return;
+//                }
+//            });
+            conn.commit();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return retorno;
+    }
+
+
+    public void transferirSolicitacao(Map<Integer, Integer> materiais, int idSetorDestino, int idSolicitacao) {
+        try (Connection conn = new ConectDB_postgres().getConexao()) {
+            conn.setAutoCommit(false);
+            if (true) {
+                materiais.forEach((idMaterial, quantidade) -> {
+//                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
+//                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
+                    String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                    try {
+                        CallableStatement stmt1 = conn.prepareCall(sql1);
+                        stmt1.setInt(1, idSetorDestino);
+                        stmt1.setInt(2, idMaterial);
+                        stmt1.setInt(3, quantidade);
+
+                        stmt1.execute();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                });
+                conn.commit();
+            } else {
+                throw new SQLException("Erro.");
             }
         } catch ( SQLException ex ) {
             ex.printStackTrace();
