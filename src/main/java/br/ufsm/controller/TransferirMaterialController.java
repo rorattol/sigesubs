@@ -48,7 +48,7 @@ public class TransferirMaterialController {
         new MaterialDAO().transferir(materiais, idSetorDestino);
 
         model.addAttribute("sucesso", "Transferencia realizada com sucesso");
-
+        model.addAttribute("unidades", new SetorDAO().getSetor());
         return "menuAdmin";
     }
 

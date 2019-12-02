@@ -117,6 +117,7 @@ public class SolicitacaoController {
             model.addAttribute("erro", "Alguma coisa correu errado. Tente novamente.");
         }
         model.addAttribute("estoque", new EstoqueSetorDAO().getEstoqueSetorAtual(idOrigem));
+        model.addAttribute("idUnidade", idOrigem);
         return "menuUsuario";
     }
 }

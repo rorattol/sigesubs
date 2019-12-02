@@ -151,7 +151,7 @@
 <%--                                </div>--%>
 <%--                            </div>--%>
 <%--                            </br>--%>
-                            <input type="hidden" name="id" value="${logado.idUsuario}" id="idUsuario">
+                            <input type="hidden" name="id" value="${logado.setor.idSetor}" id="idSetor">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
