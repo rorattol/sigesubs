@@ -54,7 +54,7 @@ public class MaterialDAO {
         return null;
     }
 
-    public boolean update (Material material) {
+    public boolean update(Material material) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
 
             sql = "UPDATE material SET nome_material = ?, unidade_medida = ?, id_categoria = ? WHERE id_material = ?;";
@@ -125,13 +125,13 @@ public class MaterialDAO {
                 if (generatedKeys.next()) {
                     int idMov = generatedKeys.getInt(1);
 
-                   materiais.forEach((idMaterial, quantidade) -> {
+                    materiais.forEach((idMaterial, quantidade) -> {
                         String sql1 = "INSERT INTO material_movimentacao (id_material, quantidade, id_movimentacao) VALUES (?, ?, ?)";
                         try {
-                        PreparedStatement stmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-                        stmt1.setInt(1, idMaterial);
-                        stmt1.setInt(2, quantidade);
-                        stmt1.setInt(3, idMov);
+                            PreparedStatement stmt1 = conn.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+                            stmt1.setInt(1, idMaterial);
+                            stmt1.setInt(2, quantidade);
+                            stmt1.setInt(3, idMov);
 
                             stmt1.executeUpdate();
                         } catch (SQLException e) {
@@ -144,7 +144,7 @@ public class MaterialDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-        } catch ( SQLException ex ) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -172,7 +172,7 @@ public class MaterialDAO {
                             stmt1.setInt(2, quantidade);
                             stmt1.setInt(3, idMov);
 
-                            stmt1.executeUpdate();
+                            stmt1.execute();
                         } catch (SQLException e) {
                             e.printStackTrace();
                             return;
@@ -183,7 +183,7 @@ public class MaterialDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-        } catch ( SQLException ex ) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -225,7 +225,7 @@ public class MaterialDAO {
                     throw new SQLException("Erro");
                 }
             }
-        } catch ( SQLException ex ) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -233,33 +233,34 @@ public class MaterialDAO {
     public void darBaixa(Map<Integer, Integer> materiais, int idSetor) {
         try (Connection conn = new ConectDB_postgres().getConexao()) {
             conn.setAutoCommit(false);
-                if (true) {
-                    materiais.forEach((idMaterial, quantidade) -> {
+            if (true) {
+                materiais.forEach((idMaterial, quantidade) -> {
 //                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
 //                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
-                        String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
-                        try {
-                            CallableStatement stmt1 = conn.prepareCall(sql1);
-                            stmt1.setInt(1, idSetor);
-                            stmt1.setInt(2, idMaterial);
-                            stmt1.setInt(3, quantidade);
+                    String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                    try {
+                        CallableStatement stmt1 = conn.prepareCall(sql1);
+                        stmt1.setInt(1, idSetor);
+                        stmt1.setInt(2, idMaterial);
+                        stmt1.setInt(3, quantidade);
 
-                            stmt1.execute();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                            return;
-                        }
-                    });
-                    conn.commit();
-                } else {
-                    throw new SQLException("Erro.");
-                }
-        } catch ( SQLException ex ) {
+                        stmt1.execute();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                });
+                conn.commit();
+            } else {
+                throw new SQLException("Erro.");
+            }
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public boolean transferirSolicitacao(int idSolicitacao, int idSetorDestino){
+
+    public boolean transferirSolicitacao(int idSolicitacao, int idSetorDestino) {
         ArrayList<Material> materiais = new ArrayList<>();
 
         try (Connection conn = new ConectDB_postgres().getConexao()) {
@@ -283,27 +284,42 @@ public class MaterialDAO {
             }
 
             String sql = "INSERT INTO movimentacao(id_solicitacao, almox_destino) VALUES (?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, idSolicitacao);
             stmt.setInt(2, idSetorDestino);
             stmt.executeUpdate();
+            ResultSet rs2 = stmt.getGeneratedKeys();
+            int idGenerator = 0;
+            if (rs2.next()) {
+                idGenerator = rs2.getInt(1);
+                for (Material m : materiais) {
 
-//            materiais.forEach((idMaterial, quantidade) -> {
-////                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
-////                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
-//                String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
-//                try {
-//                    CallableStatement stmt1 = conn.prepareCall(sql1);
-//                    stmt1.setInt(1, idSetorDestino);
-////                    stmt1.setInt(2, materiais.get(idMaterial));
-////                    stmt1.setInt(3, quantidade);
-//
-//                    stmt1.execute();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                    return;
-//                }
-//            });
+                    sql = "INSERT INTO material_movimentacao (id_material, quantidade, id_movimentacao) VALUES (?, ?, ?);";
+                    try {
+                        PreparedStatement stmt1 = conn.prepareStatement(sql);
+                        stmt1.setInt(1, m.getIdMaterial());
+                        stmt1.setInt(2, m.getQuantidade());
+                        //noinspection JpaQueryApiInspection
+                        stmt1.setInt(3, idGenerator);
+                        stmt1.execute();
+
+                        String sql1 = "insert into setor_material (cod_setor, id_material, quantidade) VALUES  (?,?,?) " +
+                                "ON CONFLICT (cod_setor, id_material) do update set quantidade =  setor_material.quantidade + ?;";
+
+                        CallableStatement stmt2 = conn.prepareCall(sql1);
+                        stmt2.setInt(1, idSetorDestino);
+                        stmt2.setInt(2, m.getIdMaterial());
+                        stmt2.setInt(3, m.getQuantidade());
+                        stmt2.setInt(4, m.getQuantidade());
+
+                        stmt2.execute();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }
+            }
+
             conn.commit();
 
         } catch (SQLException ex) {
@@ -321,7 +337,7 @@ public class MaterialDAO {
                 materiais.forEach((idMaterial, quantidade) -> {
 //                        upsert_setor_material(cod_unidade int, id_mat int, qtd int)
 //                        String sql1 = "DO $$ BEGIN PERFORM upsert_setor_material(?, ?, ?); END $$";
-                    String sql1 = "SELECT upsert_setor_material(?, ?, ?);";
+                    String sql1 = "DO $$ BEGIN PERFORM  upsert_setor_material(?, ?, ?); END $$";
                     try {
                         CallableStatement stmt1 = conn.prepareCall(sql1);
                         stmt1.setInt(1, idSetorDestino);
@@ -338,7 +354,7 @@ public class MaterialDAO {
             } else {
                 throw new SQLException("Erro.");
             }
-        } catch ( SQLException ex ) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
