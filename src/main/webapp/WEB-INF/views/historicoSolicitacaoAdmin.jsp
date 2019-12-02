@@ -152,7 +152,7 @@
                                 <tr>
                                     <th>Nome do Solicitante</th>
                                     <th>Unidade Solicitante</th>
-                                    <th>Data do Pedido</th>
+                                    <th data-sort-name="date" data-sort-order="desc">Data do Pedido</th>
                                     <th>Status</th>
                                     <th style="width: 40px">Detalhes</th>
                                 </tr>
@@ -162,7 +162,7 @@
                                 <tr>
                                     <td>${historico.usuarioSolicitante.nomeUsuario}</td>
                                     <td>${historico.setorSolicitante.nomeSetor}</td>
-                                    <td>${historico.dataSolicitacao}</td>
+                                    <td >${historico.dataSolicitacao}</td>
                                     <td>
                                     <c:if test="${historico.statusSolicitacao == 'Negado'}">
                                         <span class="label label-danger">Negado</span>
@@ -224,7 +224,6 @@
 <!-- page script -->
 <script>
     $(function () {
-        $('#example1').DataTable()
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,
